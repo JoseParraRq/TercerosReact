@@ -4,7 +4,7 @@ import {InputPassword} from "../../atoms/input-password/InputPassword";
 import { useForm, Controller } from 'react-hook-form';
 import SelectTest from '../../atoms/select/SelectTest';
 
-export default function FormTest() {
+export const FormTest = ()=> {
 
 const [data,setData] = useState(null);
 const [userTypes, setUserTypes] = useState(null);
