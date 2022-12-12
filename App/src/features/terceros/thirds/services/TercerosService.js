@@ -21,3 +21,31 @@ export async function getAllTipoDocumentoService() {
     return await responseJson;
     
 }
+
+export async function getAllCitiesService() {
+    const urlGetAllCitiesService = 'http://localhost:3000/getMunicipios';
+    const response = await fetch(urlGetAllCitiesService);
+    const responseJson = await response.json();
+    return await responseJson;
+}
+
+export async function getAllDepartmentsService() {
+    const urlGetAllDepartmentsService = 'http://localhost:3000/getDepartamentos';
+    const response = await fetch(urlGetAllDepartmentsService);
+    const responseJson = await response.json();
+    return await responseJson;
+}
+
+export async function createThirdService(data) {
+    const urlcreateThirdService = 'http://localhost:3000/createTerceros';
+
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    };
+    const response = await fetch(urlcreateThirdService, requestOptions);
+    const responseJson = await response.json();
+    return await responseJson;
+    
+}

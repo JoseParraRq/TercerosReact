@@ -87,33 +87,23 @@ class TercerosLogic {
       .insert(
         [
           {
-            primer_nombre:`${terceros.primer_nombre}`,
-          
-            segundo_nombre:`${terceros.segundo_nombre}`,
-            primer_apellido:`${terceros.primer_apellido}`,
-            segundo_apellido:`${terceros.segundo_apellido}`,
-            id_tipo_tercero:`${terceros.id_tipo_tercero}`,
-            id_regimen_tributario:`${terceros.id_regimen_tributario}`,
-            id_tipo_documento:`${terceros.id_tipo_documento}`,
-            id_ciudad:`${terceros.id_ciudad}`,
-            direccion:`${terceros.direccion}`,
+            primer_nombre:`${terceros.firstName}`, 
+            segundo_nombre:`${terceros.lastName}`,
+            primer_apellido:`${terceros.surName}`,
+            segundo_apellido:`${terceros.secondSurName}`,
+            id_tipo_tercero:`${terceros.typeTerceroId}`,
+            id_regimen_tributario:`${terceros.regimeTypeId}`,
+            id_tipo_documento:`${terceros.documentTypeId}`,
+            documento:`${terceros.document}`,
+            id_ciudad:`${terceros.cityId}`,
+            direccion:`${terceros.address}`,
             email:`${terceros.email}`,
-            celular:`${terceros.celular}`,
-            telefono:`${terceros.telefono}`,
+            celular:`${terceros.cellPhone}`,
+            telefono:`${terceros.phone}`,
           }
         ]
         ).into('Gen_Terceros')
-         
-         
-        //  .insert(
-        //   [
-        //     { title: 'Great Gatsby' }, 
-        //     { title: 'Fahrenheit 451' }
-        //   ], 
-        //   ['id']
-        // )
-        // .into('books')
-      
+       
           
     } catch (error) {
       console.log(error);

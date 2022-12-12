@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Button } from 'primereact/button';
 import { Input, Select } from '../../../../../../shared/components';
 import { useForm } from 'react-hook-form';
-import { getAllTipoDocumentoService, getAllTipoRegimenService, getAllTipoTercerosService } from '../../../services/TercerosService';
+import { createThirdService, getAllCitiesService, getAllDepartmentsService, getAllTipoDocumentoService, getAllTipoRegimenService, getAllTipoTercerosService } from '../../../services/TercerosService';
 import './styled.css'
 
 
@@ -13,35 +13,43 @@ export const RegisterThird = () => {
     const [userTypes, setUserTypes] = useState(null);
     const [typeRegimen, setTypeRegimen] = useState(null);
     const [typeDocumento, setTypeDocumento] = useState(null);
+    const [cities, setCities] = useState(null);
+    const [departments, setDepartments] = useState(null);
     const [loading, setLoading] = useState(false);
 
-    const sendTheDataTest = (data) => {
+    const sendTheDataTercero = async(data) => {
         setData(data)
         console.log(data);
-
+        const response = await createThirdService(data);
+        if (response.status = 200) {
+            alert("¡Tercero creado existosamente!");
+            setData(data);
+            
+        }else{
+            alert("¡error, no se pudo crear el tercero!");
+        }
     }
 
     let defaultValues = {
-        userTypeId: '',
-        documentType: '',
-        regimeType: '',
+        typeTerceroId: '',
+        documentTypeId: '',
+        regimeTypeId:'',
         document: '',
-        firstName:'',
-        secondName:'',
-        firstLastname:'',
-        secondLastname:'',
-        departament:'',
-        city:'',
+        firstName: '',
+        lastName: '',
+        surName: '',
+        secondSurName: '',
+        department: '',
+        cityId: '',
         address: '',
         email: '',
-        phone:'',
+        phone: '',
         cellPhone: ''
-
     }
 
     const getTypes = async () => {
         const types = await getAllTipoTercerosService();//llamo a el servicio de obtener todos los tipos de usuarios y seteo userTypes para mostrarlos en el select
-        console.log("here the userTypes in form", types);
+        console.log("here the TypesTerceros in form", types);
         let userTypes = types.map((type) => {
             return {
                 label: type.tipo_tercero,
@@ -53,7 +61,7 @@ export const RegisterThird = () => {
 
     const getTypesRegimen = async () => {
         const typesRegimen = await getAllTipoRegimenService();//llamo a el servicio de obtener todos los tipos de usuarios y seteo userTypes para mostrarlos en el select
-        console.log("here the userTypes in form", typesRegimen);
+        console.log("here the regime in form", typesRegimen);
         let typesTercerosRegimen = typesRegimen.map((type) => {
             return {
                 label: type.regimen,
@@ -65,7 +73,7 @@ export const RegisterThird = () => {
 
     const getTypesDocumento = async () => {
         const typesDocumento = await getAllTipoDocumentoService();//llamo a el servicio de obtener todos los tipos de usuarios y seteo userTypes para mostrarlos en el select
-        console.log("here the userTypes in form", typesDocumento);
+        console.log("here the TypesDocument in form", typesDocumento);
         let typesTercerosDocumento = typesDocumento.map((type) => {
             return {
                 label: type.tipo_documento,
@@ -75,81 +83,170 @@ export const RegisterThird = () => {
         setTypeDocumento(typesTercerosDocumento);
     }
 
+    const getAllCities = async () => {
+        const getCitiesTercero = await getAllCitiesService();//llamo a el servicio de obtener todos los tipos de usuarios y seteo userTypes para mostrarlos en el select
+        console.log("here the cities in form", getCitiesTercero);
+        let citiesTercero = getCitiesTercero.map((type) => {
+            return {
+                label: type.ciudad,
+                value: type.id
+            }
+        })
+        setCities(citiesTercero);
+    }
+
+    const getAllDepartments = async () => {
+        const getDepartmentsTercero = await getAllDepartmentsService();//llamo a el servicio de obtener todos los tipos de usuarios y seteo userTypes para mostrarlos en el select
+        console.log("here the departments in form", getDepartmentsTercero);
+        let departmentsTercero = getDepartmentsTercero.map((type) => {
+            return {
+                label: type.departamento,
+                value: type.id
+            }
+        })
+        setDepartments(departmentsTercero);
+    }
+
     useEffect(() => {//es un hoook que ejecuta
         getTypes();
         getTypesRegimen();
         getTypesDocumento();
+        getAllCities();
+        getAllDepartments();
         setLoading(true);
 
     }, [])
     const { control, formState: { errors }, handleSubmit, reset } = useForm({ defaultValues });
 
-    // const cities = [
-    //     { name: 'Bogota', code: 'BOG' },
-    //     { name: 'Pereira', code: 'PER' }
-    // ]
 
     return (
-        <div>
-            <h1>Registro de terceros</h1>
+        <div className='container-fluid'>
 
-            <h5>Informacion Principal </h5>
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+                integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossOrigin="anonymous"></link>
 
-            <div className='main_card'>
+            <center>
 
-                <div>
-                    <Select name='userTypeId' control={control} rules={{ required: "is required" }} label={'userTypeId'} error={errors} placeHolder="select UserType" selectOptions={userTypes} />
-                    <Select name='documentType' control={control} rules={{ required: "is required" }} label={'Tipo Documento'} error={errors} placeHolder="select the Type Identifier" selectOptions={typeDocumento} />
-                </div>
+                <h1>Registro de terceros</h1>
+
+                <h5>Informacion Principal </h5>
+
+                <div className='container-fluid'>
+
+                <form>
+
+                    
+                </form>
+                    <div className='row'>
+
+                        <div className='col'>
+                            <Select name='typeTerceroId' control={control} rules={{ required: "is required" }} label={'Tipo Tercero'} error={errors} placeHolder="seleccione el tipo de Tercero" selectOptions={userTypes} />
+                            <br/>
+                            <Select name='documentTypeId' control={control} rules={{ required: "is required" }} label={'Tipo Documento'} error={errors} placeHolder="select the Type Identifier" selectOptions={typeDocumento} />
+                        </div>
 
 
-                <div>
-                    <Select name='Regimen' control={control} rules={{ required: "is required" }} label={'Regimen'} error={errors} placeHolder="select the Regime" selectOptions={typeRegimen} />
-                    <Input name='document' label='Documento' control={control} error={errors} style={{ span: "p-float-label" }} rules={{ required: 'Documento requerido.' }} />
-                </div>
+                        <div className='col'>
+                            <Select name='regimeTypeId' control={control} rules={{ required: "is required" }} label={'Regimen'} error={errors} placeHolder="select the Regime" selectOptions={typeRegimen} />
+                            <br/>
+                            <Input name='document' label='Documento' control={control} error={errors} rules={{ required: 'Documento requerido.' }} />
+                        </div>
+                    </div>
 
-            </div >
+                </div >
+            </center>
+
             <br />
 
-            <h5>Datos Adicionales</h5>
+            <center>
 
-            <div className='main_card'>
+                <h5>Datos Adicionales</h5>
 
-                <div>
-                    <Input name='first_name' label='Primer Nombre' control={control} rules={{ required: "El campo de primer nombre es requerido" }} style={{ label:'block', input:'p-invalid block', small: 'p-error block'  }} error={errors} />
-                    <Input name='first_lastname' label='Primer Apellido' control={control} rules={{ required: "El campo de primer apellido es requerido" }} error={errors} style={{ label:'block', input:'p-invalid block', small: 'p-error block'  }}/>
+                <div className='container-fluid'>
+                    <div className='row'>
+
+                        <div className='col'>
+
+                            <div>
+                                <Input name='firstName' label='Primer Nombre' control={control} rules={{ required: "El campo de primer nombre es requerido" }} style={{ label: 'block', input: 'p-invalid block', small: 'p-error block' }} error={errors} />
+                                <br/>
+                                <Input name='lastName' label='Primer Apellido' control={control} rules={{ required: "El campo de primer apellido es requerido" }} error={errors} style={{ label: 'block', input: 'p-invalid block', small: 'p-error block' }} />
+                            </div>
+
+                        </div>
+
+                        <div className='col'>
+
+                            <div>
+                                <Input name='surName' label='Segundo Nombre' control={control} rules={{ required: "El campo de segundo nombre es requerido" }} error={errors} style={{ label: 'block', input: 'p-invalid block', small: 'p-error block' }} />
+                                <br/>
+                                <Input name='secondSurName' label='Segundo Apellido' control={control} rules={{ required: "El campo de segundo es requerido" }} error={errors} style={{ label: 'block', input: 'p-invalid block', small: 'p-error block' }} />
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
                 </div>
 
-                <div>
-                    <Input name='second_name' label='Segundo Nombre' control={control} rules={{ required: "El campo de segundo nombre es requerido" }}  error={errors} style={{ label:'block', input:'p-invalid block', small: 'p-error block'  }} />
-                    <Input name='second_lastname' label='Segundo Apellido' control={control} rules={{ required: "El campo de segundo es requerido" }}  error={errors} style={{ label:'block', input:'p-invalid block', small: 'p-error block'  }}/>
+            </center>
+
+            <center>
+
+                <h5>Datos Geograficos</h5>
+
+                <div className='container-fluid'>
+                    <div className='row'>
+                        <div className='col'>
+                            <div>
+                                <Select name='department' control={control} rules={{ required: "is required" }} label='Departamento' error={errors} placeHolder="selecione el departamento" selectOptions={departments} />
+                                <br/>
+                                <Input name='address' control={control} rules={{ required: "El campo de segundo nombre es requerido" }} label={'Dirección'} error={errors} />
+
+                            </div>
+                        </div>
+
+                        <div className='col'>
+
+                            <Select name='cityId' control={control} rules={{ required: "is required" }} label='Ciudad' error={errors} placeHolder="seleccione la ciudad" selectOptions={cities} />
+                        </div>
+
+                    </div>
                 </div>
+            </center>
 
-            </div>
+            <center>
 
-            <div className='main_card'>
-                <div>
-                    <Select name='Departament' control={control} rules={{ required: "is required" }} label='Departamento' error={errors} placeHolder="selecione el departamento" selectOptions={typeRegimen} />
-                    <Select name='City' control={control} rules={{ required: "is required" }} label='Ciudad' error={errors} placeHolder="seleccione la ciudad" selectOptions={typeRegimen} />
+            <br/>
 
-                </div>
+            <div className='container-fluid'>
+                <div className='row'>
+                    <div className='col'>
+                        <Input name='email' control={control} rules={{ required: "El campo de segundo nombre es requerido" }} label='Email' error={errors}/>
+                    </div>
 
+                    <div className='col'>
+                <Input name='phone' control={control} rules={{ required: "El campo de segundo nombre es requerido" }} label='Telefono' error={errors} style={{ label: 'block', input: 'p-invalid block', small: 'p-error block' }} />
 
-                <Input name='address' control={control} rules={{ required: "El campo de segundo nombre es requerido" }} label={'Segundo Nombre'} error={errors} />
+                    </div>
 
-            </div>
-
-            <div className='main_card'>
-                <Input name='email' control={control} rules={{ required: "El campo de segundo nombre es requerido" }} label='Segundo Nombre' error={errors} style={{ label:'block', input:'p-invalid block', small: 'p-error block'  }} />
-                <Input name='phone' control={control} rules={{ required: "El campo de segundo nombre es requerido" }} label='Segundo Nombre' error={errors} style={{ label:'block', input:'p-invalid block', small: 'p-error block'  }} />
-                <Input name='cellPhone' control={control} rules={{ required: "El campo de segundo nombre es requerido" }} label='Segundo Nombre' error={errors} style={{ label:'block', input:'p-invalid block', small: 'p-error block'  }}/>
-
-            </div>
-
+                    <div className='col'>
+                <Input name='cellPhone' control={control} rules={{ required: "El campo de segundo nombre es requerido" }} label='Celular' error={errors} style={{ label: 'block', input: 'p-invalid block', small: 'p-error block' }} />
+                <br/>
+            <form onSubmit={handleSubmit(sendTheDataTercero)}>
             <div className='buttons'>
                 <Button type="submit" label="Guardar" className="p-button-success " />
                 <Button label="Cancelar" className="p-button-secondary" />
             </div>
+            </form>
+                    </div>
+                </div>
+            </div>
+            </center>
+            
+            <br/>
+
 
         </div>
 
