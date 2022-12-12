@@ -24,24 +24,24 @@ const PruebaComponente = () => {
         
         }
     
-        const getTypes = async () => {
-            const types = await getAllUserTypes();//llamo a el servicio de obtener todos los tipos de usuarios y seteo userTypes para mostrarlos en el select
-            console.log("her ethe userTypes in form",types);
-            let userTypes= types.map((type)=>{
-              return {
-                label:type.name,
-                value:type.id
-              }
-            })
-            setUserTypes(userTypes);
-          } 
+        // const getTypes = async () => {
+        //     const types = await getAllUserTypes();//llamo a el servicio de obtener todos los tipos de usuarios y seteo userTypes para mostrarlos en el select
+        //     console.log("her ethe userTypes in form",types);
+        //     let userTypes= types.map((type)=>{
+        //       return {
+        //         label:type.name,
+        //         value:type.id
+        //       }
+        //     })
+        //     setUserTypes(userTypes);
+        //   } 
           
           
-            useEffect(() => {//es un hoook que ejecuta
-              getTypes();
-              setLoading(true);
+        //     useEffect(() => {//es un hoook que ejecuta
+        //       getTypes();
+        //       setLoading(true);
               
-            }, [])
+        //     }, [])
             
     const { control, formState: { errors }, handleSubmit, reset } = useForm({ defaultValues });
     
