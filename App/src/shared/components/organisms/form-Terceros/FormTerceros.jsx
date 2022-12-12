@@ -51,9 +51,9 @@ const { control, formState: { errors }, handleSubmit, reset } = useForm({ defaul
             <center>
             <div>
                 <form onSubmit={handleSubmit(sendTheDataTest)}>
-                <Input name='name' control={control} rules={{required:"is required"}} label={'name'} error={errors}/>
+                <Input name='name' type='text' control={control} rules={{required:"is required"}} label={'name'} error={errors}/>
                 <InputPassword name='pass' control={control} rules={{required:"is required"}} label={'pass'} error = {errors} style="span"/>
-                <Input name='surName' control={control} rules={{required:"is required"}} label={'surName'} error={errors}/>
+                <Input   type='text' name='surName' control={control} rules={{required:"is required"}} label={'surName'} error={errors}/>
                 <InputPassword name='pass2' control={control} rules={{required:"is required"}} label={'pass'} error = {errors} style="span"/>
                 <SelectTest name={'userTypeId'} control={control} rules={{required:"is required"}} label={'userTypeId'} error={errors} selectOptions={userTypes}/>  
                 <button type='submit' >Send Test</button>
