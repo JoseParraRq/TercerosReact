@@ -51,7 +51,7 @@ const { control, formState: { errors }, handleSubmit, reset } = useForm({ defaul
             <center>
             <div>
                 <form onSubmit={handleSubmit(sendTheDataTest)}>
-                <Input name='name' control={control} rules={{required:"is required"}} label={'name'} error={errors}/>
+                <Input name='name' control={control} rules={{required:"El campo nombre es requerido"}} label={'name'} error={errors}/>
                 <InputPassword name='pass' control={control} rules={{required:"is required"}} label={'pass'} error = {errors} style="span"/>
                 <Input name='surName' control={control} rules={{required:"is required"}} label={'surName'} error={errors}/>
                 <InputPassword name='pass2' control={control} rules={{required:"is required"}} label={'pass'} error = {errors} style="span"/>
