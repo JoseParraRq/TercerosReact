@@ -1,0 +1,1 @@
+export * from './organisms/form-Terceros/FormTerceros'

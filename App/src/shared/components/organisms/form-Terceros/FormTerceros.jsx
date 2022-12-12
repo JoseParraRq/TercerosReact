@@ -3,7 +3,7 @@ import { useForm, Controller } from 'react-hook-form';
 import { getAllTipoDocumentoService, getAllTipoRegimenService, getAllTipoTercerosService } from '../../../../features/terceros/TercerosService';
 import SelectTest from '../../atoms/select/SelectTest';
 
-export default function FormTest() {
+export const FormTest = ()=> {
 
   const [data, setData] = useState(null);
   const [userTypes, setUserTypes] = useState(null);
