@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { useForm, Controller } from 'react-hook-form';
-import { getAllTipoDocumentoService, getAllTipoRegimenService, getAllTipoTercerosService } from '../../../../features/terceros/TercerosService';
-import SelectTest from '../../atoms/select/SelectTest';
+import { getAllTipoDocumentoService, getAllTipoRegimenService, getAllTipoTercerosService } from '../../../../features/terceros/thirds/services/TercerosService';
 
-export const FormTest = ()=> {
+
+export const FormTest = () => {
 
   const [data, setData] = useState(null);
   const [userTypes, setUserTypes] = useState(null);
@@ -76,13 +76,13 @@ export const FormTest = ()=> {
         <div className='container-fluid'>
           <div className="row">
             <div className="col">
-              <SelectTest name={'userTypeId'} control={control} rules={{ required: "is required" }} label={'userTypeId'} error={errors} placeHolder="select UserType" selectOptions={userTypes} />
+              <Select name={'userTypeId'} control={control} rules={{ required: "is required" }} label={'userTypeId'} error={errors} placeHolder="select UserType" selectOptions={userTypes} />
             </div>
             <div className="col">
-            <SelectTest name={'Regimen'} control={control} rules={{ required: "is required" }} label={'Regimen'} error={errors} placeHolder="select the Regime" selectOptions={typeRegimen} />
+              <Select name={'Regimen'} control={control} rules={{ required: "is required" }} label={'Regimen'} error={errors} placeHolder="select the Regime" selectOptions={typeRegimen} />
             </div>
             <div className="col">
-            <SelectTest name={'TipoDocumento'} control={control} rules={{ required: "is required" }} label={'Tipo Documento'} error={errors} placeHolder="select the Type Identifier" selectOptions={typeDocumento} />
+              <Select name={'TipoDocumento'} control={control} rules={{ required: "is required" }} label={'Tipo Documento'} error={errors} placeHolder="select the Type Identifier" selectOptions={typeDocumento} />
             </div>
           </div>
           <form onSubmit={handleSubmit(sendTheDataTest)}>

@@ -1,20 +1,20 @@
 import React from 'react'
 import { Controller } from 'react-hook-form';
 import { classNames } from 'primereact/utils';
-import {Dropdown} from 'primereact/dropdown';
+import { Dropdown } from 'primereact/dropdown';
 
-export default function SelectTest(props) {
-const { error, name, label, style, icon, control, rules,selectOptions,placeHolder } = props
+export const  Select = (props) => {
+  const { error, name, label, style, icon, control, rules, selectOptions, placeHolder } = props
 
   return (
     <div className="field">
       <span className={style?.span}>
         {icon && <i className={icon} />}
-        <label htmlFor={name} className={classNames({ 'p-error': !!error[name] })}>{label}: </label>        
-          <Controller name={name} control={control}
-            rules={rules} render={({ field, fieldState }) => (
-            <Dropdown id={field.name}  value={field.value} optionLabel='label' onChange={(e)=>{field.onChange(e.value)}} options={selectOptions} placeholder={placeHolder} className={classNames({ 'p-invalid': fieldState.invalid })} />)} />
-              </span>
+        <label htmlFor={name} className={classNames({ 'p-error': !!error[name] })}>{label}: </label>
+        <Controller name={name} control={control}
+          rules={rules} render={({ field, fieldState }) => (
+            <Dropdown id={field.name} value={field.value} optionLabel='label' onChange={(e) => { field.onChange(e.value) }} options={selectOptions} placeholder={placeHolder} className={classNames({ 'p-invalid': fieldState.invalid })} />)} />
+      </span>
       {error[name] && <small className="p-error">{error[name].message}</small>}
     </div>
   )

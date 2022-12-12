@@ -37,10 +37,10 @@ export function Input(props) {
         <Controller name={name} control={control}
           rules={rules}
           render={({ field, fieldState }) => (
-            <InputText id={field.name} {...field} className={classNames({ 'p-invalid': fieldState.invalid })} />
+            <InputText id={field.name} {...field} className={classNames({'p-invalid' : fieldState.invalid })} />
           )} />
       </span>
-      {error[name] && <small className="p-error">{error[name].message}</small>}
+      {error[name] && <small className={ style.small}>{error[name].message}</small>}
     </div>
   );
 }

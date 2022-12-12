@@ -1,12 +1,14 @@
 import React from 'react'
-import { FormTest } from '../shared/components'
+import { RegisterThird } from '../features/terceros/thirds/components'
+
 
 export const Register = () => {
 
     return (
         <div>
         
-            <FormTest />
+        <RegisterThird/>
+            
         </div>
     )
 }
