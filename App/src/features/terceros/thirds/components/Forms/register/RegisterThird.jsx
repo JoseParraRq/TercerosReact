@@ -105,24 +105,27 @@ export const RegisterThird = () => {
 
                 <div>
                     <Select name='Regimen' control={control} rules={{ required: "is required" }} label={'Regimen'} error={errors} placeHolder="select the Regime" selectOptions={typeRegimen} />
-                    <Input name='document' label='Documento' control={control} error={errors} style={{ span: "p-float-label" }} rules={{ required: 'Documento requerido.' }} />
+                    <Input name='document' label='Documento' block={true} control={control} error={errors}  rules={{ required: 'Documento requerido.' }} />
                 </div>
 
             </div >
-            <br />
+            <hr />
 
             <h5>Datos Adicionales</h5>
+
+            <h5>Personal</h5>
+            <hr/>
 
             <div className='main_card'>
 
                 <div>
-                    <Input name='first_name' label='Primer Nombre' control={control} rules={{ required: "El campo de primer nombre es requerido" }} style={{ label:'block', input:'p-invalid block', small: 'p-error block'  }} error={errors} />
-                    <Input name='first_lastname' label='Primer Apellido' control={control} rules={{ required: "El campo de primer apellido es requerido" }} error={errors} style={{ label:'block', input:'p-invalid block', small: 'p-error block'  }}/>
+                    <Input name='first_name' label='Primer Nombre' control={control} rules={{ required: "El campo de primer nombre es requerido" }} block={true} error={errors} />
+                    <Input name='first_lastname' label='Primer Apellido' control={control} rules={{ required: "El campo de primer apellido es requerido" }} error={errors} block={true}/>
                 </div>
 
                 <div>
-                    <Input name='second_name' label='Segundo Nombre' control={control} rules={{ required: "El campo de segundo nombre es requerido" }}  error={errors} style={{ label:'block', input:'p-invalid block', small: 'p-error block'  }} />
-                    <Input name='second_lastname' label='Segundo Apellido' control={control} rules={{ required: "El campo de segundo es requerido" }}  error={errors} style={{ label:'block', input:'p-invalid block', small: 'p-error block'  }}/>
+                    <Input name='second_name' label='Segundo Nombre' control={control} rules={{ required: "El campo de segundo nombre es requerido" }}  error={errors} block={true} />
+                    <Input name='second_lastname' label='Segundo Apellido' control={control} rules={{ required: "El campo de segundo es requerido" }}  error={errors} block={true}/>
                 </div>
 
             </div>
@@ -135,14 +138,14 @@ export const RegisterThird = () => {
                 </div>
 
 
-                <Input name='address' control={control} rules={{ required: "El campo de segundo nombre es requerido" }} label={'Segundo Nombre'} error={errors} />
+                <Input name='address' control={control} rules={{ required: "El campo de segundo nombre es requerido" }} label={'Segundo Nombre'} error={errors} block={true} />
 
             </div>
 
             <div className='main_card'>
-                <Input name='email' control={control} rules={{ required: "El campo de segundo nombre es requerido" }} label='Segundo Nombre' error={errors} style={{ label:'block', input:'p-invalid block', small: 'p-error block'  }} />
-                <Input name='phone' control={control} rules={{ required: "El campo de segundo nombre es requerido" }} label='Segundo Nombre' error={errors} style={{ label:'block', input:'p-invalid block', small: 'p-error block'  }} />
-                <Input name='cellPhone' control={control} rules={{ required: "El campo de segundo nombre es requerido" }} label='Segundo Nombre' error={errors} style={{ label:'block', input:'p-invalid block', small: 'p-error block'  }}/>
+                <Input name='email' control={control} rules={{ required: "El campo de segundo nombre es requerido" }} label='Segundo Nombre' error={errors} block={true} />
+                <Input name='phone' control={control} rules={{ required: "El campo de segundo nombre es requerido" }} label='Segundo Nombre' error={errors} block={true}/>
+                <Input name='cellPhone' control={control} rules={{ required: "El campo de segundo nombre es requerido" }} label='Segundo Nombre' error={errors} block={true}/>
 
             </div>
 

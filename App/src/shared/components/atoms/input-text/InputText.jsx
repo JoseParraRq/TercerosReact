@@ -6,7 +6,7 @@ import { useState } from 'react';
 
 
 export function Input(props) {
-  const { error, name, label, style, icon, control, rules } = props
+  const { error, name, label, style, icon, control, rules, block } = props
 
   // const [optionType, setOptionType] = useState(type)
   // let container = null
@@ -15,7 +15,7 @@ export function Input(props) {
   //   case 'text':
 
   //     container =  <InputText id={field.name} {...field} className={classNames({ 'p-invalid': fieldState.invalid })} />
-    
+
   //     break;
 
   //     case'password':
@@ -32,15 +32,17 @@ export function Input(props) {
     <div className="field">
       <span className={style?.span}>
         {icon && <i className={icon} />}
-        <label htmlFor={name} className={classNames({ 'p-error': !!error[name] })}>{label}: </label>
-
+        {block  && <label htmlFor={name} style={{display: 'block'}}>{label} :</label>}
         <Controller name={name} control={control}
           rules={rules}
           render={({ field, fieldState }) => (
-            <InputText id={field.name} {...field} className={classNames({'p-invalid' : fieldState.invalid })} />
+            <InputText id={field.name} {...field} className={block ? classNames({ 'p-invalid': fieldState.invalid }) :classNames({ 'p-invalid': fieldState.invalid })} />
           )} />
+        {!block && <label htmlFor={name} className={classNames({ 'p-error': !!error[name] })}>{label} </label>}
       </span>
-      {error[name] && <small className={ style.small}>{error[name].message}</small>}
+      {error[name] && <small className={style.small ? 'p-error block' : 'p-error'}>{error[name].message}</small>}
     </div>
+
+    
   );
 }
