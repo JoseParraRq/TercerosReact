@@ -4,10 +4,13 @@ import { Input, Select } from '../../../../../../shared/components';
 import { useForm } from 'react-hook-form';
 import { getAllTipoDocumentoService, getAllTipoRegimenService, getAllTipoTercerosService } from '../../../services/TercerosService';
 import './styled.css'
+import { useSelector } from "react-redux";
 
 
 export const RegisterThird = () => {
 
+    const {newUsers} = useSelector(state=>state.third)
+    console.log(newUsers);
 
     const [data, setData] = useState(null);
     const [userTypes, setUserTypes] = useState(null);
