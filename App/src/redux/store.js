@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { userSlice } from "./user/userSlice";
+import thirdsSlice from "./user/thirds/thirdsSlice";
 
 export const store = configureStore({ //maneja estados de la app
     reducer:{
-        user: userSlice.reducer,
+        third: thirdsSlice,
     }
 });
