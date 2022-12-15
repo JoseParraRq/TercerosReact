@@ -26,3 +26,7 @@
     background-color: red !important;
     color: yellow !important;
  }
+
+ #selects {
+    width: 150px;
+ }

@@ -222,7 +222,7 @@ export const RegisterThird = () => {
 
                     </div>
                         <div className='col'>
-                                <Input block={true} name='address' control={control} rules={{ required: "El campo de segundo nombre es requerido" }} label={'Dirección'} error={errors} />
+                                <Input block={true} name='address' control={control} rules={{ required: "El campo de segundo nombre es requerido" }} label={'Dirección'} error={errors} style={{width:"100%"}} />
                         </div>
 
                 </div>
