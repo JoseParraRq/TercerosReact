@@ -136,7 +136,7 @@ export const RegisterThird = () => {
   } = useForm({ defaultValues });
 
   return (
-    <div className="container">
+    <div className="container contenedor">
       <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
         rel="stylesheet"
@@ -358,9 +358,9 @@ export const RegisterThird = () => {
                   <Button
                     type="submit"
                     label="Guardar"
-                    className="p-button-success m-2"
+                    className="p-button-secondary m-2"
                   />
-                  <Button label="Cancelar" className="p-button-secondary m-2" />
+                  <Button label="Cancelar" className="p-button-danger m-2" />
                 </div>
             </form>
       </center>

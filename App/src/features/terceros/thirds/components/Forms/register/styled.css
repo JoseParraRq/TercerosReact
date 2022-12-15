@@ -1,3 +1,10 @@
+.contenedor{
+    background-color: antiquewhite;
+    border: 5px solid rgb(94, 0, 0);
+    border-radius: 100px;
+    margin: 10px;
+}
+
 .main_card {
     width: 100%;
     display: flex;
@@ -12,8 +19,9 @@
 }
 
 .titulo{
-    background-color: aqua;
+    background-color:rgb(94, 0, 0);
     padding: 5px;
+    color: white;
 }
 
 .carta{
