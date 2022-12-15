@@ -137,12 +137,6 @@ export const RegisterThird = () => {
 
   return (
     <div className="container contenedor">
-      <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
-        rel="stylesheet"
-        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
-        crossOrigin="anonymous"
-      ></link>
 
       <center>
         <h1>Registro de terceros</h1>
@@ -284,17 +278,7 @@ export const RegisterThird = () => {
                   placeHolder="selecione el departamento"
                   selectOptions={departments}
                 />
-                <br />
-                <Input
-                  block={true}
-                  name="address"
-                  control={control}
-                  rules={{
-                    required: "El campo de segundo nombre es requerido",
-                  }}
-                  label={"Dirección"}
-                  error={errors}
-                />
+
                 <br />
                 <Select
                 name="cityId"
@@ -305,6 +289,19 @@ export const RegisterThird = () => {
                 placeHolder="seleccione la ciudad"
                 selectOptions={cities}
               />
+              </div>
+              <div>
+              <Input
+                  style={{width:"42rem"}}
+                  block={true}
+                  name="address"
+                  control={control}
+                  rules={{
+                    required: "El campo de segundo nombre es requerido",
+                  }}
+                  label={"Dirección"}
+                  error={errors}
+                />
               </div>
             </div>
       </center>
@@ -358,9 +355,9 @@ export const RegisterThird = () => {
                   <Button
                     type="submit"
                     label="Guardar"
-                    className="p-button-secondary m-2"
+                    className="p-button-success m-2"
                   />
-                  <Button label="Cancelar" className="p-button-danger m-2" />
+                  <Button label="Cancelar" className="p-button-secondary m-2" />
                 </div>
             </form>
       </center>
