@@ -7,7 +7,6 @@ import './styled.css'
 import { useSelector, useDispatch } from "react-redux";
 import { addThirds } from '../../../../../../redux/user/thirds/thirdsSlice';
 
-
 export const RegisterThird = () => {
 
     const {newUsers} = useSelector(state=>state.third)
@@ -128,12 +127,13 @@ export const RegisterThird = () => {
 
 
     return (
-        <div className='container-fluid'>
-
+        <div className='container form'>
+            
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
                 integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossOrigin="anonymous"></link>
 
             <center>
+          
 
                 <h1>Registro de terceros</h1>
 
@@ -210,7 +210,6 @@ export const RegisterThird = () => {
                             <div>
                                 <Select name='department' control={control} rules={{ required: "is required" }} label='Departamento' error={errors} placeHolder="selecione el departamento" selectOptions={departments} />
                                 <br/>
-                                <Input block={true} name='address' control={control} rules={{ required: "El campo de segundo nombre es requerido" }} label={'Dirección'} error={errors} />
 
                             </div>
                         </div>
@@ -220,7 +219,12 @@ export const RegisterThird = () => {
                             <Select name='cityId' control={control} rules={{ required: "is required" }} label='Ciudad' error={errors} placeHolder="seleccione la ciudad" selectOptions={cities} />
                         </div>
 
+
                     </div>
+                        <div className='col'>
+                                <Input block={true} name='address' control={control} rules={{ required: "El campo de segundo nombre es requerido" }} label={'Dirección'} error={errors} />
+                        </div>
+
                 </div>
             </center>
 
@@ -255,8 +259,8 @@ export const RegisterThird = () => {
             
             <br/>
 
-
-        </div>
+  
+         </div>
 
 
     )
