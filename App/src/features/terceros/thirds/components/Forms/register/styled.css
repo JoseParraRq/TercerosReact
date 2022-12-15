@@ -10,3 +10,19 @@
     justify-content: flex-end;
    
 }
+
+.titulo{
+    background-color: aqua;
+    padding: 5px;
+}
+
+.carta{
+    width: 60rem;
+}
+
+.carta div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+}
