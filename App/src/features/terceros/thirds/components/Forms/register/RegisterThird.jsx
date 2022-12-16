@@ -359,24 +359,8 @@ export const RegisterThird = () => {
                   <Button label="Cancelar" className="p-button-secondary m-2" />
                 </div>
             </form>
-<<<<<<< HEAD
-                    </div>
-                </div>
-            </div>
-            </center>
-            
-            <br/>
-
-  
-         </div>
-
-
-    )
-}
-=======
       </center>
     {/* finaliza la card 4 */}
     </div>
   );
 };
->>>>>>> DuvanRiPe
