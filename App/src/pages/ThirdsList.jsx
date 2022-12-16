@@ -3,20 +3,28 @@ import React, { useEffect, useState } from "react";
 import 'react-tabulator/lib/styles.css'; // required styles
 import 'react-tabulator/lib/css/tabulator.min.css'; // theme
 import { ReactTabulator } from 'react-tabulator';
-import { getAllTerceros } from "../features/thirds/services/TercerosService";
 import { ThirdModal } from "../features/thirds/components";
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllTerceros } from "../features/thirds/services/TercerosService";
 
 const ThirdsList = () => {
 
-  const [data, setData] = useState(null)  
+  const dispatch = useDispatch();
+  const [data, setData] = useState(null);
+  const { thirds } = useSelector(state=>state.third);
 
-  const getAllTercerosService= async()=>{
-    const dat = await getAllTerceros();
-    setData(dat)
-  }
+  // const getAllTercerosService= async()=>{
+  //   const dat = await getAllTerceros();
+  //   setData(dat)
+  // }
+
+
+
 
   useEffect(() => {
-    getAllTercerosService()
+    // getAllTercerosService()
+    dispatch(getAllTerceros());
+    setData(thirds);
   }, [])
 
 
@@ -53,7 +61,7 @@ const ThirdsList = () => {
       <ThirdModal />
       <br />
       <ReactTabulator
-      data={data}
+      data={thirds }
       events={{
         rowClick: rowClick
       }}

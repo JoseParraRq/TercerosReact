@@ -1,9 +1,11 @@
+import { getThirds } from "../../../redux/thirds/thirdsSlice";
+
 export async function getAllTipoTercerosService() {
     const urlGetAllTipoTercerosService = 'http://localhost:3000/getTipoTerceros';
     const response = await fetch(urlGetAllTipoTercerosService);
     const responseJson = await response.json();
     return await responseJson;
-    
+
 }
 
 export async function getAllTipoRegimenService() {
@@ -11,7 +13,7 @@ export async function getAllTipoRegimenService() {
     const response = await fetch(urlGetAllTipoRegimenService);
     const responseJson = await response.json();
     return await responseJson;
-    
+
 }
 
 export async function getAllTipoDocumentoService() {
@@ -19,7 +21,7 @@ export async function getAllTipoDocumentoService() {
     const response = await fetch(urlGetAllTipoDocumentoService);
     const responseJson = await response.json();
     return await responseJson;
-    
+
 }
 
 export async function getAllCitiesService() {
@@ -41,19 +43,30 @@ export async function createThirdService(data) {
 
     const requestOptions = {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+            'Content-Type': 'application/json'
+        },
         body: JSON.stringify(data)
     };
     const response = await fetch(urlcreateThirdService, requestOptions);
     const responseJson = await response.json();
     return await responseJson;
-    
+
 }
 
-export async function getAllTerceros() {
-    const urlGetAllTerceros = 'http://localhost:3000/getAllTerceros';
-    const response = await fetch(urlGetAllTerceros);
-    const responseJson = await response.json();
-    return await responseJson;
-    
+export const getAllTerceros = () => {
+
+    return async (dispatch, getState) => {
+
+        const urlGetAllTerceros = 'http://localhost:3000/getAllTerceros';
+        const response = await fetch(urlGetAllTerceros);
+        const responseJson = await response.json();
+        console.log(response);
+        // return await responseJson;
+        dispatch(getThirds(responseJson));
+    }
+
+
+
+
 }
