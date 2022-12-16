@@ -79,7 +79,7 @@ class TercerosController{
         } catch (error) {
             console.log("here the error in the get all users",error);
         }
-        return res.json({terceros});//"successful request"
+        return res.json(terceros);//"successful request"
         // await bd.raw('insert into user (firstname,surname,email,password,cities_id) values($0,$1,$2,$3,$4);',[user.firstname,user.surname,user.email,user.password,user.cities_id]);
         // knex('user').insert({email: user.email,})
         //

@@ -100,6 +100,7 @@ class TercerosLogic {
             email:`${terceros.email}`,
             celular:`${terceros.cellPhone}`,
             telefono:`${terceros.phone}`,
+            id_departamento:`${terceros.department}`
           }
         ]
         ).into('Gen_Terceros')
@@ -114,45 +115,11 @@ class TercerosLogic {
 
   async getAllTercerosLogic() {
     try {
-      const array = [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        'listar'
-      ];
-
-      var users = await bd.raw(`call Sp_con_terceros(${array.map((e) => { return "?"; })})`, array);
-
-      console.log("here the forms in back query", users[0].users);
-
+      var terceros = await bd.raw(`select  * from View_terceros`);
     } catch (error) {
       console.log(error);
     }
-    return users[0][0];
+    return terceros;
   }
 
   async getAllTercerosForListLogic() {
