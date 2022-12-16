@@ -285,17 +285,6 @@ export const RegisterThird = () => {
                   selectOptions={departments}
                 />
                 <br />
-                <Input
-                  block={true}
-                  name="address"
-                  control={control}
-                  rules={{
-                    required: "El campo de segundo nombre es requerido",
-                  }}
-                  label={"Dirección"}
-                  error={errors}
-                />
-                <br />
                 <Select
                 name="cityId"
                 control={control}
@@ -306,6 +295,20 @@ export const RegisterThird = () => {
                 selectOptions={cities}
               />
               </div>
+            <div className="col d-flex justify-content-around">
+            <br />
+                <Input
+                  block={true}
+                  name="address"
+                  control={control}
+                  rules={{
+                    required: "El campo de segundo nombre es requerido",
+                  }}
+                  label={"Dirección"}
+                  error={errors}
+                  style={{width:"100%"}}
+                />
+            </div>
             </div>
       </center>
     {/* finaliza la tercera card */}
