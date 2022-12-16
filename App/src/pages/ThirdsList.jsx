@@ -19,6 +19,16 @@ const ThirdsList = () => {
   }, [])
 
 
+  const rowClick = (e, row) => {
+
+    console.log(row.getData())
+    // console.log('ref table: ', ref.current); // this is the Tabulator table instance
+    // // ref?.current && ref?.current.replaceData([])
+    // console.log('rowClick id: ${row.getData().id}', row, e);
+    // setState({ selectedName: row.getData().name });
+  };
+
+
   const columns = [
     { title: "Primer Nombre", field: "primerNombre", width: 100 },
     { title: "Segundo Nombre", field: "segundoNombre", width: 100 },
@@ -43,6 +53,9 @@ const ThirdsList = () => {
       <br />
       <ReactTabulator
       data={data}
+      events={{
+        rowClick: rowClick
+      }}
       columns={columns}
       layout={"fitColumns"}
       />
