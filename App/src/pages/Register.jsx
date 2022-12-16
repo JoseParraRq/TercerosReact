@@ -1,5 +1,5 @@
 import React from 'react'
-import { RegisterThird } from '../features/terceros/thirds/components'
+import { RegisterThird } from '../features/thirds/components'
 
 
 export const Register = () => {

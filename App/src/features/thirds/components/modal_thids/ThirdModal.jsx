@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { RegisterThird } from "../../../../features/terceros/thirds/components/Forms/register/RegisterThird";
+import { RegisterThird } from "../forms/register/RegisterThird";
 import { Dialog } from "primereact/dialog";
 import { Button } from "primereact/button";
 
-const ThirdModal = () => {
+export const ThirdModal = () => {
   const [showModal, setShowModal] = useState(false);
 
-  const mostartModal = () =>{
+  const mostartModal = () => {
     setShowModal(true)
   }
 
@@ -19,10 +19,10 @@ const ThirdModal = () => {
       />
 
       <Dialog onHide={() => { setShowModal(false) }} modal visible={showModal}>
-        <RegisterThird/>
+        <RegisterThird />
       </Dialog>
     </div>
   );
 };
 
-export default ThirdModal;
+
