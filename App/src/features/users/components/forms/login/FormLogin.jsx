@@ -1,8 +1,8 @@
 import React from 'react'
 import { useForm } from "react-hook-form";
 import { Button } from "primereact/button";
-import { InputPassword } from "../../../../../../shared/components/atoms/input-password/InputPassword";
-import { InputEmail } from "../../../../../../shared/components/atoms/input-email/InputEmail";
+import { InputPassword } from "../../../../../shared/components/atoms/input-password/InputPassword";
+import { InputEmail } from "../../../../../shared/components/atoms/input-email/InputEmail";
 
 
 const FormLogin = () => {
@@ -29,7 +29,7 @@ const FormLogin = () => {
     <div className='container-fluid'>
       <center>
       <div className="column">
-      <div className="container contenedorLogin">
+      <div className="container card">
         <h2>Login</h2>
           <InputEmail  type="email"  name="email" label="Correo electronico" control={control} error={errors}/>
           <br />

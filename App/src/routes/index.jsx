@@ -11,9 +11,8 @@ import ThirdsList from '../pages/ThirdsList.jsx';
 function RoutesApp(props) {
   return (
     <Routes>
-      <Route path='/login' element={<Login/>}/>
+      <Route path='/' element={<Login/>}/>
       <Route path='/registro' element={<Register/>}/>
-      <Route path='/' element={<FormTest/>}/>
       <Route path='/pruebaComponente' element={<PruebaComponente/>}/>
       <Route path='/listarTerceros' element={<ThirdsList/>}/>
     </Routes>

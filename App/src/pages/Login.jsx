@@ -1,13 +1,13 @@
 import React from 'react'
-import FormLogin from '../features/terceros/thirds/components/Forms/login/FormLogin'
+import ModalLogin from '../features/users/components/modal_users/ModalLogin'
+
 
 
 export const Login = () => {
 
     return (
         <div>
-            <FormLogin/>
-    
+            <ModalLogin/>
         </div>
     )
 }
