@@ -137,237 +137,231 @@ export const RegisterThird = () => {
 
   return (
     <div className="container contenedor">
-      <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
-        rel="stylesheet"
-        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
-        crossOrigin="anonymous"
-      ></link>
 
       <center>
         <h1>Registro de terceros</h1>
 
         {/* Primera card */}
 
-          <div className="row card carta">
+        <div className="row card carta">
           <h5 className="card-title titulo">Informacion Principal </h5>
-            <div className="col d-flex justify-content-around">
-              <Select
-                name="typeTerceroId"
-                control={control}
-                rules={{ required: "is required" }}
-                label={"Tipo Tercero"}
-                error={errors}
-                placeHolder="seleccione el tipo de Tercero"
-                selectOptions={userTypes}
-              />
-              <br />
-              <Select
-                name="documentTypeId"
-                control={control}
-                rules={{ required: "is required" }}
-                label={"Tipo Documento"}
-                error={errors}
-                placeHolder="select the Type Identifier"
-                selectOptions={typeDocumento}
-              />
-            </div>
-
-            <div className="col d-flex justify-content-around">
-              <Select
-                name="regimeTypeId"
-                control={control}
-                rules={{ required: "is required" }}
-                label={"Regimen"}
-                error={errors}
-                placeHolder="select the Regime"
-                selectOptions={typeRegimen}
-              />
-              <br />
-              <Input
-                className=""
-                block={true}
-                name="document"
-                label="Documento"
-                control={control}
-                error={errors}
-                rules={{ required: "Documento requerido." }}
-              />
-            </div>
+          <div className="col d-flex justify-content-around">
+            <Select
+              name="typeTerceroId"
+              control={control}
+              rules={{ required: "is required" }}
+              label={"Tipo Tercero"}
+              error={errors}
+              placeHolder="seleccione el tipo de Tercero"
+              selectOptions={userTypes}
+            />
+            <br />
+            <Select
+              name="documentTypeId"
+              control={control}
+              rules={{ required: "is required" }}
+              label={"Tipo Documento"}
+              error={errors}
+              placeHolder="select the Type Identifier"
+              selectOptions={typeDocumento}
+            />
           </div>
+
+          <div className="col d-flex justify-content-around">
+            <Select
+              name="regimeTypeId"
+              control={control}
+              rules={{ required: "is required" }}
+              label={"Regimen"}
+              error={errors}
+              placeHolder="select the Regime"
+              selectOptions={typeRegimen}
+            />
+            <br />
+            <Input
+              className=""
+              block={true}
+              name="document"
+              label="Documento"
+              control={control}
+              error={errors}
+              rules={{ required: "Documento requerido." }}
+            />
+          </div>
+        </div>
       </center>
       <br />
-    {/* Finaiza la primera card */}
+      {/* Finaiza la primera card */}
 
-    {/* Segunda card */}
+      {/* Segunda card */}
       <center>
-          <div className="row card carta">
+        <div className="row card carta">
           <h5 className="card-title titulo">Datos Adicionales</h5>
-            <div className="col d-flex justify-content-around">
-                <Input
-                  block={true}
-                  name="firstName"
-                  label="Primer Nombre"
-                  control={control}
-                  rules={{ required: "El campo de primer nombre es requerido" }}
-                  style={{
-                    label: "block",
-                    input: "p-invalid block",
-                    small: "p-error block",
-                  }}
-                  error={errors}
-                />
-                <br />
-                <Input
-                  block={true}
-                  name="lastName"
-                  label="Primer Apellido"
-                  control={control}
-                  rules={{
-                    required: "El campo de primer apellido es requerido",
-                  }}
-                  error={errors}
-                  style={{
-                    label: "block",
-                    input: "p-invalid block",
-                    small: "p-error block",
-                  }}
-                />
-            </div>
-
-            <div className="col d-flex justify-content-around">
-                <Input
-                  block={true}
-                  name="surName"
-                  label="Segundo Nombre"
-                  control={control}
-                  rules={{
-                    required: "El campo de segundo nombre es requerido",
-                  }}
-                  error={errors}
-                  style={{
-                    label: "block",
-                    input: "p-invalid block",
-                    small: "p-error block",
-                  }}
-                />
-                <br />
-                <Input
-                  block={true}
-                  name="secondSurName"
-                  label="Segundo Apellido"
-                  control={control}
-                  rules={{ required: "El campo de segundo es requerido" }}
-                  error={errors}
-                  style={{
-                    label: "block",
-                    input: "p-invalid block",
-                    small: "p-error block",
-                  }}
-                />
-            </div>
-          </div>
-      </center>
-    {/* Finaliza la segunda card */}
-    <br />
-    {/* Tercera card */}
-      <center>
-          <div className="row card carta">
-          <h5 className="card-title titulo">Datos Geograficos</h5>
-            <div className="col d-flex justify-content-around">
-                <Select
-                  name="department"
-                  control={control}
-                  rules={{ required: "is required" }}
-                  label="Departamento"
-                  error={errors}
-                  placeHolder="selecione el departamento"
-                  selectOptions={departments}
-                />
-                <br />
-                <Select
-                name="cityId"
-                control={control}
-                rules={{ required: "is required" }}
-                label="Ciudad"
-                error={errors}
-                placeHolder="seleccione la ciudad"
-                selectOptions={cities}
-              />
-              </div>
-            <div className="col d-flex justify-content-around">
+          <div className="col d-flex justify-content-around">
+            <Input
+              block={true}
+              name="firstName"
+              label="Primer Nombre"
+              control={control}
+              rules={{ required: "El campo de primer nombre es requerido" }}
+              style={{
+                label: "block",
+                input: "p-invalid block",
+                small: "p-error block",
+              }}
+              error={errors}
+            />
             <br />
-                <Input
-                  block={true}
-                  name="address"
-                  control={control}
-                  rules={{
-                    required: "El campo de segundo nombre es requerido",
-                  }}
-                  label={"Dirección"}
-                  error={errors}
-                  style={{width:"100%"}}
-                />
-            </div>
-            </div>
-      </center>
-    {/* finaliza la tercera card */}
-    <br />
-    {/* Inicio card 4 */}
-      <center>
-          <div className="row card carta">
-          <h5 className="card-title titulo" >Datos de comunicación</h5>
-            <div className="col d-flex justify-content-around">
-              <Input
-                block={true}
-                name="email"
-                control={control}
-                rules={{ required: "El campo de segundo nombre es requerido" }}
-                label="Email"
-                error={errors}
-              />
-
-              <Input
-                block={true}
-                name="phone"
-                control={control}
-                rules={{ required: "El campo de segundo nombre es requerido" }}
-                label="Telefono"
-                error={errors}
-                style={{
-                  label: "block",
-                  input: "p-invalid block",
-                  small: "p-error block",
-                }}
-              />
-
-              <Input
-                block={true}
-                name="cellPhone"
-                control={control}
-                rules={{ required: "El campo de segundo nombre es requerido" }}
-                label="Celular"
-                error={errors}
-                style={{
-                  label: "block",
-                  input: "p-invalid block",
-                  small: "p-error block",
-                }}
-              />
-            </div>
+            <Input
+              block={true}
+              name="lastName"
+              label="Primer Apellido"
+              control={control}
+              rules={{
+                required: "El campo de primer apellido es requerido",
+              }}
+              error={errors}
+              style={{
+                label: "block",
+                input: "p-invalid block",
+                small: "p-error block",
+              }}
+            />
           </div>
-          <form onSubmit={handleSubmit(sendTheDataTercero)}>
-                <div className="buttons d-flex justify-content-center m-2 ">
-                  <Button
-                    type="submit"
-                    label="Guardar"
-                    className="p-button-secondary m-2"
-                  />
-                  <Button label="Cancelar" className="p-button-danger m-2" />
-                </div>
-            </form>
+
+          <div className="col d-flex justify-content-around">
+            <Input
+              block={true}
+              name="surName"
+              label="Segundo Nombre"
+              control={control}
+              rules={{
+                required: "El campo de segundo nombre es requerido",
+              }}
+              error={errors}
+              style={{
+                label: "block",
+                input: "p-invalid block",
+                small: "p-error block",
+              }}
+            />
+            <br />
+            <Input
+              block={true}
+              name="secondSurName"
+              label="Segundo Apellido"
+              control={control}
+              rules={{ required: "El campo de segundo es requerido" }}
+              error={errors}
+              style={{
+                label: "block",
+                input: "p-invalid block",
+                small: "p-error block",
+              }}
+            />
+          </div>
+        </div>
       </center>
-    {/* finaliza la card 4 */}
+      {/* Finaliza la segunda card */}
+      <br />
+      {/* Tercera card */}
+      <center>
+        <div className="row card carta">
+          <h5 className="card-title titulo">Datos Geograficos</h5>
+          <div className="col d-flex justify-content-around">
+            <Select
+              name="department"
+              control={control}
+              rules={{ required: "is required" }}
+              label="Departamento"
+              error={errors}
+              placeHolder="selecione el departamento"
+              selectOptions={departments}
+            />
+
+            <br />
+            <Select
+              name="cityId"
+              control={control}
+              rules={{ required: "is required" }}
+              label="Ciudad"
+              error={errors}
+              placeHolder="seleccione la ciudad"
+              selectOptions={cities}
+            />
+          </div>
+          <div>
+            <Input
+              style={{ width: "42rem" }}
+              block={true}
+              name="address"
+              control={control}
+              rules={{
+                required: "El campo de segundo nombre es requerido",
+              }}
+              label={"Dirección"}
+              error={errors}
+            />
+          </div>
+        </div>
+      </center>
+      {/* finaliza la tercera card */}
+      <br />
+      {/* Inicio card 4 */}
+      <center>
+        <div className="row card carta">
+          <h5 className="card-title titulo" >Datos de comunicación</h5>
+          <div className="col d-flex justify-content-around">
+            <Input
+              block={true}
+              name="email"
+              control={control}
+              rules={{ required: "El campo de segundo nombre es requerido" }}
+              label="Email"
+              error={errors}
+            />
+
+            <Input
+              block={true}
+              name="phone"
+              control={control}
+              rules={{ required: "El campo de segundo nombre es requerido" }}
+              label="Telefono"
+              error={errors}
+              style={{
+                label: "block",
+                input: "p-invalid block",
+                small: "p-error block",
+              }}
+            />
+
+            <Input
+              block={true}
+              name="cellPhone"
+              control={control}
+              rules={{ required: "El campo de segundo nombre es requerido" }}
+              label="Celular"
+              error={errors}
+              style={{
+                label: "block",
+                input: "p-invalid block",
+                small: "p-error block",
+              }}
+            />
+          </div>
+        </div>
+        <form onSubmit={handleSubmit(sendTheDataTercero)}>
+          <div className="buttons d-flex justify-content-center m-2 ">
+            <Button
+              type="submit"
+              label="Guardar"
+              className="p-button-success m-2"
+            />
+            <Button label="Cancelar" className="p-button-secondary m-2" />
+          </div>
+        </form>
+      </center>
+      {/* finaliza la card 4 */}
     </div>
   );
 };

@@ -100,6 +100,7 @@ class TercerosLogic {
             email:`${terceros.email}`,
             celular:`${terceros.cellPhone}`,
             telefono:`${terceros.phone}`,
+            id_departamento:`${terceros.department}`
           }
         ]
         ).into('Gen_Terceros')

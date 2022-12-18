@@ -15,7 +15,7 @@ export function Input(props) {
         <Controller name={name} control={control}
           rules={rules}
           render={({ field, fieldState }) => (
-            <InputText id={field.name} {...field} className={block ? classNames({ 'p-invalid': fieldState.invalid }) :classNames({ 'p-invalid': fieldState.invalid })} style={style}/>
+            <InputText style={style} id={field.name} {...field} className={block ? classNames({ 'p-invalid': fieldState.invalid }) :classNames({ 'p-invalid': fieldState.invalid })} />
           )} />
         {!block && <label htmlFor={name} className={classNames({ 'p-error': !!error[name] })}>{label} </label>}
       </span>

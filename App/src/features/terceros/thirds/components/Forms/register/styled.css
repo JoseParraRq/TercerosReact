@@ -1,14 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
 .contenedor{
-    background-color: antiquewhite;
-    border: 5px solid rgb(94, 0, 0);
-    border-radius: 100px;
-    margin: 10px;
+    border: 2px groove rgb(144, 232, 243);
+    border-radius: 30px;
+    font-family: 'Roboto Condensed', sans-serif;
+    width: 800px;
 }
 
+.contenedorLogin{
+    border: 2px groove rgb(144, 232, 243);
+    border-radius: 10px;
+    font-family: 'Roboto Condensed', sans-serif;
+    width: 300px; 
+    flex-direction: column;
+    align-items: center;
+}
 .main_card {
     width: 100%;
-    display: flex;
-   
+    display: flex;  
 }
 
 .buttons {
@@ -19,13 +27,13 @@
 }
 
 .titulo{
-    background-color:rgb(94, 0, 0);
+    background-color:rgb(144, 232, 243);
     padding: 5px;
-    color: white;
+
 }
 
 .carta{
-    width: 60rem;
+    width: 50rem;
 }
 
 .carta div{
