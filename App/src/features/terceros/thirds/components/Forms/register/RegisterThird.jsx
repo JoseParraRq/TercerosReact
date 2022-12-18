@@ -13,6 +13,7 @@ import {
 import "./styled.css";
 import { useSelector, useDispatch } from "react-redux";
 import { addThirds } from "../../../../../../redux/user/thirds/thirdsSlice";
+import { InputPassword } from "../../../../../../shared/components/atoms/input-password/InputPassword";
 
 export const RegisterThird = () => {
   const { newUsers } = useSelector((state) => state.third);

@@ -133,74 +133,51 @@ class TercerosLogic {
     return users[0];
   }
 
-  async getOneTercerosForLogic(tercero) {
-    try {
-      console.log("here the idddd tercerrooo==>>", tercero.tercerosId);
-      var users = await bd.raw(`select
-    ter.id,
-    tg.nombre as Tipo_tercero,
-    ter.documento, ter.digito, 
-    td.nombre as tipo_documento,
-    ter.nombre_tercero,
-    ter.primer_nombre,ter.segundo_nombre,
-    ter.primer_apellido,ter.segundo_apellido,
-    rg.nombre as tipo_regimen,
-    m.nombre as municipio,
-    ac.nombre as actividad,
-    ter.id_lista_precio,
-    fp.nombre as forma_pago,
-    ter.direccion,ter.telefono,ter.celular,ter.email,ter.cupo_credito,ter.plazo,ter.estado,ter.id_cuenta_retencion,ter.retencion_porcentaje,
-    ter.id_cuenta_reteica,ter.reteica_porcentaje,ter.base_retencion  
-   from con_terceros as ter 
-   join con_tipos_tercero as tg on id_tipo_tercero=tg.id
-   join gen_tipo_documentos_dian as td  on id_tipo_documento= td.id
-   join gen_municipios as m on id_municipio=m.id
-   join gen_tipo_regimenes as rg on id_tipo_regimen=rg.id
-   join gen_actividades_ciiu as ac on id_actividad_ciiu=ac.id
-   join gen_tipo_formas_pagos as fp on  id_tipo_forma_pago
-   where ter.id=?;`, [tercero.tercerosId]);
-
-    } catch (error) {
-      console.log(error);
-    }
-    return users[0][0];
-  }
+ 
 
   async getOneTercerosLogic(tercero) {
     try {
-      console.log("here the idddd tercerrooo==>>", tercero.tercerosId);
-      var users = await bd.raw(`select
-    id,
-    id_tipo_tercero,
-    documento,
-    digito,
-    id_tipo_documento,
-    nombre_tercero,
-    primer_nombre,
-    segundo_nombre,
-    primer_apellido,
-    segundo_apellido,
-    id_tipo_regimen,
-    id_municipio,
-    id_actividad_ciiu,
-    id_lista_precio,
-    id_tipo_forma_pago,
-    direccion,
-    telefono,
-    celular,
-    email,
-    cupo_credito,
-    plazo,
-    estado,
-    id_cuenta_retencion,
-    retencion_porcentaje,
-    base_retencion from con_terceros
-    where id=?;`, [tercero.tercerosId]);
-
+      console.log("here the idddd tercerrooo==>>", tercero.terceroId);
+      var tercero = await bd.raw(`select
+     idtercero, primer_nombre AS primerNombre, segundo_nombre AS segundoNombre, primer_apellido AS primerApellido,
+      segundo_apellido AS segundoApellido, direccion, email, telefono, celular, documento, TpT.tipo_tercero AS tipoTercero,
+       rgt.regimen, td.tipo_documento AS tipoDocumento, d.departamento, c.ciudad
+      FROM Gen_Terceros INNER JOIN
+      gen_tipos_tercero AS TpT ON TpT.id = Gen_Terceros.id_tipo_tercero INNER JOIN
+      gen_regimen_tributario AS rgt ON rgt.id = Gen_Terceros.id_regimen_tributario INNER JOIN
+      gen_tipo_documento AS td ON td.id = Gen_Terceros.id_tipo_documento INNER JOIN
+      gen_departamentos AS d ON d.id = Gen_Terceros.id_departamento INNER JOIN
+      gen_ciudades AS c ON c.id = Gen_Terceros.id_ciudad
+      where idtercero=?;`, [tercero.terceroId]);
+      console.log("here the result",tercero);
     } catch (error) {
       console.log(error);
     }
-    return users[0][0];
+    return tercero;
+  }
+
+  async getOneTerceroByEmailLogic(tercero) {
+    try {
+      console.log("here the email", tercero.email);
+      var terceroResult = await bd.raw(`select
+     idtercero, primer_nombre AS primerNombre, segundo_nombre AS segundoNombre, primer_apellido AS primerApellido,
+      segundo_apellido AS segundoApellido, direccion, email, telefono, celular, documento, TpT.tipo_tercero AS tipoTercero,
+       rgt.regimen, td.tipo_documento AS tipoDocumento, d.departamento, c.ciudad
+      FROM Gen_Terceros INNER JOIN
+      gen_tipos_tercero AS TpT ON TpT.id = Gen_Terceros.id_tipo_tercero INNER JOIN
+      gen_regimen_tributario AS rgt ON rgt.id = Gen_Terceros.id_regimen_tributario INNER JOIN
+      gen_tipo_documento AS td ON td.id = Gen_Terceros.id_tipo_documento INNER JOIN
+      gen_departamentos AS d ON d.id = Gen_Terceros.id_departamento INNER JOIN
+      gen_ciudades AS c ON c.id = Gen_Terceros.id_ciudad
+      where email=?;`, [tercero.email]);
+
+      if( terceroResult[0]===undefined){
+        throw Error("this email not exist in our system, do you want register");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+    return terceroResult;
   }
 
   async updateTerceros(terceros) {
@@ -258,6 +235,15 @@ class TercerosLogic {
       console.log(error);
     }
     return users[0];
+  }
+
+  async loginLogic(request){
+    try {
+      console.log("here the req in login logic",request);
+      let findOneTerceroForLogin = await this.getOneTerceroByEmailLogic(request)
+    } catch (error) {
+      
+    }
   }
 
 }
