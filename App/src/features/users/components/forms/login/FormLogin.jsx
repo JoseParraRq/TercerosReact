@@ -3,9 +3,14 @@ import { useForm } from "react-hook-form";
 import { Button } from "primereact/button";
 import { InputPassword } from "../../../../../shared/components/atoms/input-password/InputPassword";
 import { InputEmail } from "../../../../../shared/components/atoms/input-email/InputEmail";
+import { loginUserService } from '../../../services/UserServices';
+import { useNavigate } from "react-router-dom";
+
 
 
 const FormLogin = () => {
+
+  const navigate=useNavigate();
 
   let defaultValues = {
     email:"",
@@ -20,9 +25,8 @@ const FormLogin = () => {
   } = useForm({ defaultValues });
 
   const sendTheDataLogin = async (data) => {
-    
-    console.log(data);
-    
+    const response = await loginUserService(data);
+    navigate("/listarTerceros")
   };
    
     return (
