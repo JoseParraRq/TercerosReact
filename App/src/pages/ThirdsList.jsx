@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import RegisterThirdModal from "../shared/components/molecules/modal/RegisterThirdModal";
+
 import 'react-tabulator/lib/styles.css'; // required styles
 import 'react-tabulator/lib/css/tabulator.min.css'; // theme
 import { ReactTabulator } from 'react-tabulator';
-import { getAllTerceros } from "../features/terceros/thirds/services/TercerosService";
+import { getAllTerceros } from "../features/thirds/services/TercerosService";
+import { ThirdModal } from "../features/thirds/components";
 
 const ThirdsList = () => {
 
@@ -49,7 +50,7 @@ const ThirdsList = () => {
   console.log(data);
   return (
     <div>
-      <RegisterThirdModal />
+      <ThirdModal />
       <br />
       <ReactTabulator
       data={data}

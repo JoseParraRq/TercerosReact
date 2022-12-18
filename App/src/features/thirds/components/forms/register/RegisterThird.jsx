@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Button } from "primereact/button";
-import { Input, Select } from "../../../../../../shared/components";
 import { useForm } from "react-hook-form";
+import { Button } from "primereact/button";
+
 import {
   createThirdService,
   getAllCitiesService,
@@ -10,9 +10,11 @@ import {
   getAllTipoRegimenService,
   getAllTipoTercerosService,
 } from "../../../services/TercerosService";
-import "./styled.css";
 import { useSelector, useDispatch } from "react-redux";
-import { addThirds } from "../../../../../../redux/user/thirds/thirdsSlice";
+
+import { Input, Select } from "../../../../../shared/components";
+import "./styled.css";
+import { addThirds } from "../../../../../redux/thirds/thirdsSlice";
 
 
 export const RegisterThird = () => {
@@ -32,7 +34,7 @@ export const RegisterThird = () => {
   const sendTheDataTercero = async (data) => {
     setData(data);
     console.log(data);
-    dispatch(addThirds(data));
+    // dispatch(addThirds(data));
     const response = await createThirdService(data);
     if ((response.status = 200)) {
       alert("¡Tercero creado existosamente!");

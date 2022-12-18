@@ -4,6 +4,7 @@ import PruebaComponente from '../shared/components/pages/PruebaComponente.jsx';
 import { Login } from '../pages/Login.jsx';
 import { Register } from '../pages/Register.jsx';
 //import { FormLogin } from '../pages/Login.jsx';
+// import { FormTest } from '../shared/components/index.js';
 import ThirdsList from '../pages/ThirdsList.jsx';
 
 
@@ -12,6 +13,7 @@ function RoutesApp(props) {
     <Routes>
       <Route path='/login' element={<Login/>}/>
       <Route path='/registro' element={<Register/>}/>
+      {/* <Route path='/formTest' element={<FormTest/>}/> */}
       <Route path='/pruebaComponente' element={<PruebaComponente/>}/>
       <Route path='/listarTerceros' element={<ThirdsList/>}/>
     </Routes>
