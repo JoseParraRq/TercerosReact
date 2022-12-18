@@ -13,7 +13,7 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 
 import { Input, Select } from "../../../../../shared/components";
-import "./styled.css";
+import "./RegisterThird.css";
 import { addThirds } from "../../../../../redux/thirds/thirdsSlice";
 
 
