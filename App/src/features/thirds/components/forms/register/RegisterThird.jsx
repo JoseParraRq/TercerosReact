@@ -34,7 +34,7 @@ export const RegisterThird = () => {
   const sendTheDataTercero = async (data) => {
     setData(data);
     console.log(data);
-    dispatch(addThirds(data));
+    // dispatch(addThirds(data));
     const response = await createThirdService(data);
     if ((response.status = 200)) {
       alert("¡Tercero creado existosamente!");
