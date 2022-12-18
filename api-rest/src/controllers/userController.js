@@ -88,6 +88,23 @@ try {
         // knex('user').insert({email: user.email,})
         //
     }
+    async loginController(req, res) {
+        try {
+            let user = await new UserLogic().getOneUserByEmailLogic(req.body);
+            console.log("here the user in controller",user);
+            if (user[0] === undefined || user[0] === null) {
+                return res.json("this Email dont exist in our System do you want to register")                
+              }
+        
+              if (user[0].password != req.body.password) {
+                return res.json("this password is incorrect")                
+            }
+            return res.json(user);
+        } catch (error) {
+            console.log("here the error in loginController", error);
+        }
+    }
+
 }
 
 
