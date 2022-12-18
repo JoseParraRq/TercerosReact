@@ -26,7 +26,11 @@ const FormLogin = () => {
 
   const sendTheDataLogin = async (data) => {
     const response = await loginUserService(data);
-    navigate("/listarTerceros")
+    if (data.email !== response[0].email && data.password !== response[0].password) {
+      alert("email o contraseña incorrecto")
+    }else{
+      navigate("/listarTerceros")
+    }
   };
    
     return (
