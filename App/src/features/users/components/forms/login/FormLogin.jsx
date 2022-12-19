@@ -26,7 +26,20 @@ const FormLogin = () => {
 
   const sendTheDataLogin = async (data) => {
     const response = await loginUserService(data);
-    navigate("/listarTerceros")
+    console.log(data);
+    console.log(data.email);
+    console.log(response[0].email);
+    console.log(response);
+    let dataValidation = JSON.stringify(response[0].email)
+    console.log("data");
+    console.log(data.email===dataValidation);
+    
+    // if(response==="this Email dont exist in our System do you want to register"){
+    //   console.log("nullllll");
+    // }else if(){
+
+    //   navigate("/listarTerceros")
+    // }
   };
    
     return (

@@ -181,7 +181,8 @@ class UserLogic {
       console.log("here the email", user.email);
       console.log("here the password", user.password);
       var userResult = await bd.raw(`select  
-    email,password from user_system
+    email,password
+     from user_system
     where email=?;`, [user.email]);
 
     } catch (error) {
