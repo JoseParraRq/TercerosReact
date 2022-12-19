@@ -1,3 +1,4 @@
+const { generateWebToken } = require('../middlewares/jwt');
 const bd = require('./../db')
 class UserLogic {
 
@@ -177,26 +178,34 @@ class UserLogic {
   }
 
   async getOneUserByEmailLogic(user) {
+
     try {
-      const jwt = require('jsonwebtoken');
-      var userResult = await bd.raw(`select  
-      email,password from user_system
+
+      const userResult = await bd.raw(`select  
+      id, email,password,id_role_type from user_system
       where email=?;`, [user.email]);
-      let  token = '';
-      if(userResult[0]!==undefined){
-       token = await jwt.sign({ userResult }, process.env.TOKEN || 'secret', {
-          expiresIn: 120
-      });
-      console.log("here the tokeeennn===>",token);
-      }  
-      return {
-      user: userResult,
-      token: token
-      };
+
+      if (userResult.length === 0 || userResult === undefined){
+        console.log(userResult);
+        return {message:"user not found"}
+      }else{
+      if (userResult[0].password !== user.password){
+          console.log(userResult);
+          return {message:"invalid password"}
+        }
+        const token = await generateWebToken(userResult[0].id_role_type);
+        console.log(token);
+        return {
+          message: "user Authenticated ",
+          token,
+          email: userResult[0].email
+        };
+      }
+
+
     } catch (error) {
-      console.log(error);
+      return {message:"internal server error"};
     }
-  
   }
 }
 

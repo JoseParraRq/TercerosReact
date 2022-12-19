@@ -50,9 +50,10 @@ export async function createThirdService(data) {
     
 }
 
-export async function getAllTerceros() {
+export async function getAllTerceros(token) {
+
     const urlGetAllTerceros = 'http://localhost:3000/getAllTerceros';
-    const response = await fetch(urlGetAllTerceros);
+    const response = await fetch(urlGetAllTerceros,{method:"GET",headers:{"x-token":token}});
     const responseJson = await response.json();
     return await responseJson;
     

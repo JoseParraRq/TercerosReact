@@ -5,13 +5,14 @@ import 'react-tabulator/lib/css/tabulator.min.css'; // theme
 import { ReactTabulator } from 'react-tabulator';
 import { getAllTerceros } from "../features/thirds/services/TercerosService";
 import { ThirdModal } from "../features/thirds/components";
-
+import { useSelector } from "react-redux";
 const ThirdsList = () => {
 
   const [data, setData] = useState(null)  
-
+  const {token} = useSelector(state=>state.user);
+  
   const getAllTercerosService= async()=>{
-    const dat = await getAllTerceros();
+    const dat = await getAllTerceros(token);
     setData(dat)
   }
 
@@ -48,13 +49,13 @@ const ThirdsList = () => {
   ];
 
   console.log(data);
-  let get =localStorage.getItem('email')
-  console.log(get);
+  // let get =localStorage.getItem('email')
+  // console.log(get);
   return (
     <div>
-     <div>
+     {/* <div>
       <h4 style={{"textAlign":"end"}}>{"Usuario: "+get}</h4>
-     </div>
+     </div> */}
       <ThirdModal />
       <br />
       <ReactTabulator

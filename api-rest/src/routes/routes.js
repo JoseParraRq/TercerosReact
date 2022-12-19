@@ -4,6 +4,8 @@ const {FormBuilderController} = require('./../controllers/formBuilderController'
 const service = require('../models/user');
 const { ProductController } = require('../controllers/productController');
 const { TercerosController } = require('../controllers/tercerosController');
+const { validateJwt } = require('../middlewares/validateWebToken');
+
 const router=Router();
 
 // angular desarrollo==============>>>>>>>>
@@ -16,7 +18,7 @@ router.get("/getMunicipios",new TercerosController().getMunicipios);
 
 router.get("/getDepartamentos",new TercerosController().getDepartamentos);
 
-router.get("/getAllTerceros",new TercerosController().getAllTerceros);
+router.get("/getAllTerceros", validateJwt,new TercerosController().getAllTerceros);
 router.post("/createTerceros",new TercerosController().createTerceros);
 
 router.post("/login",new UserController().loginController);

@@ -90,20 +90,44 @@ try {
     }
 
     async loginController(req, res) {
-        try {
-            let user = await new UserLogic().getOneUserByEmailLogic(req.body);
-            console.log("here the user in controller",user);
-            if (user.user[0] === undefined || user.token==='') {
-                return res.status(400).json({message:"this Email dont exist in our System do you want to register",response:null})                
-              }
+        const response = await new UserLogic().getOneUserByEmailLogic(req.body);
+        const {message,token,email} = response; 
+        console.log(message); 
+
+        switch (message) {
+            case "user not found":
+            return res.status(400).json({message})                
+            
+            break;
+
+            case "user Authenticated ":
+                return res.status(400).json({token,email})                
+            break;
+
+            case "internal server error":
+                return res.status(500).json({message})                
+            break;
+
+            case "invalid password":
+                return res.status(400).json({message})                
+            break;
+       
+        default:
+            break;
+       }
+        // try {
+        //     let user = await new UserLogic().getOneUserByEmailLogic(req.body);
+        //     console.log("here the user in controller",user);
+        //     if (user.user[0] === undefined || user.token==='') {
+        //       }
         
-              if (user.user[0].password !== req.body.password) {
-                return res.status(400).json({message:"this password is incorrect",response:null})                
-            }
-            return res.status(200).json({response:user});
-        } catch (error) {
-            console.log("here the error in loginController", error);
-        }
+        //       if (user.user[0].password !== req.body.password) {
+        //         return res.status(400).json({message:"this password is incorrect",response:null})                
+        //     }
+        //     return res.status(200).json({response:user});
+        // } catch (error) {
+        //     console.log("here the error in loginController", error);
+        // }
     }
 
 }
