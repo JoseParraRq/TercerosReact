@@ -6,8 +6,6 @@ import { InputEmail } from "../../../../../shared/components/atoms/input-email/I
 import { loginUserService } from '../../../services/UserServices';
 import { useNavigate } from "react-router-dom";
 
-
-
 const FormLogin = () => {
 
   const navigate=useNavigate();
@@ -26,8 +24,14 @@ const FormLogin = () => {
 
   const sendTheDataLogin = async (data) => {
     const response = await loginUserService(data);
-    if (data.email !== response[0].email && data.password !== response[0].password) {
-      alert("email o contraseña incorrecto")
+    console.log(response);
+    console.log(response.response);
+    let emailStorage = localStorage.setItem('email',response.response.user[0].email);
+    let get = localStorage.getItem('email')
+    console.log("here the local storage===>>>",get);
+    if (response.response===null) {
+      let msg = response.message
+      alert(msg)
     }else{
       navigate("/listarTerceros")
     }
