@@ -19,7 +19,7 @@ export function Input(props) {
           )} />
         {!block && <label htmlFor={name} className={classNames({ 'p-error': !!error[name] })}>{label} </label>}
       </span>
-      {error[name] && <small className={style.small ? 'p-error block' : 'p-error'}>{error[name].message}</small>}
+      {error[name] && <small className={style?.small ? 'p-error block' : 'p-error'}>{error[name].message}</small>}
     </div>
 
     

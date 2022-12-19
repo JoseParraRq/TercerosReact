@@ -56,8 +56,13 @@ const ThirdsList = () => {
   ];
 
   console.log(data);
+  let get =localStorage.getItem('email')
+  console.log(get);
   return (
     <div>
+     <div>
+      <h4 style={{"textAlign":"end"}}>{"Usuario: "+get}</h4>
+     </div>
       <ThirdModal />
       <br />
       <ReactTabulator
