@@ -178,18 +178,25 @@ class UserLogic {
 
   async getOneUserByEmailLogic(user) {
     try {
-      console.log("here the email", user.email);
-      console.log("here the password", user.password);
+      const jwt = require('jsonwebtoken');
       var userResult = await bd.raw(`select  
-    email,password
-     from user_system
-    where email=?;`, [user.email]);
-
+      email,password from user_system
+      where email=?;`, [user.email]);
+      let  token = '';
+      if(userResult[0]!==undefined){
+       token = await jwt.sign({ userResult }, process.env.TOKEN || 'secret', {
+          expiresIn: 120
+      });
+      console.log("here the tokeeennn===>",token);
+      }  
+      return {
+      user: userResult,
+      token: token
+      };
     } catch (error) {
       console.log(error);
-      // throw Error("this password is incorrect");      
     }
-    return userResult;
+  
   }
 }
 

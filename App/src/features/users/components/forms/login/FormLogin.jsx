@@ -6,8 +6,6 @@ import { InputEmail } from "../../../../../shared/components/atoms/input-email/I
 import { loginUserService } from '../../../services/UserServices';
 import { useNavigate } from "react-router-dom";
 
-
-
 const FormLogin = () => {
 
   const navigate=useNavigate();
@@ -26,20 +24,17 @@ const FormLogin = () => {
 
   const sendTheDataLogin = async (data) => {
     const response = await loginUserService(data);
-    console.log(data);
-    console.log(data.email);
-    console.log(response[0].email);
     console.log(response);
-    let dataValidation = JSON.stringify(response[0].email)
-    console.log("data");
-    console.log(data.email===dataValidation);
-    
-    // if(response==="this Email dont exist in our System do you want to register"){
-    //   console.log("nullllll");
-    // }else if(){
-
-    //   navigate("/listarTerceros")
-    // }
+    console.log(response.response);
+    let emailStorage = localStorage.setItem('email',response.response.user[0].email);
+    let get = localStorage.getItem('email')
+    console.log("here the local storage===>>>",get);
+    if (response.response===null) {
+      let msg = response.message
+      alert(msg)
+    }else{
+      navigate("/listarTerceros")
+    }
   };
    
     return (
