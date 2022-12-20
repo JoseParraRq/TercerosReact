@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useForm } from "react-hook-form";
 import { Button } from "primereact/button";
 import { InputPassword } from '../../../../../shared/components/atoms/input-password/InputPassword';
@@ -6,35 +6,52 @@ import { InputEmail } from '../../../../../shared/components/atoms/input-email/I
 import { useNavigate } from "react-router-dom";
 import {useSelector,useDispatch} from "react-redux";
 import { Select } from '../../../../../shared/components/atoms/select/Select';
+import { createUserService, getAllRoles } from '../../../services/UserServices';
 
 const FormRegisterUser = () => {
-  const {authenticated} = useSelector(state=>state.user);
+  const {token} = useSelector(state=>state.user);
   const dispatch = useDispatch();
   // console.log(authenticated);
   
   const navigate=useNavigate();
 
-  const getAllRoles = async () => {
-    const getRoles = await getAllRolesService(); //llamo a el servicio de obtener todos los tipos de usuarios y seteo userTypes para mostrarlos en el select
-    console.log("here the cities in form", getCitiesTercero);
-    let citiesTercero = getCitiesTercero.map((type) => {
+  const [roles, setRoles] = useState(null)
+
+  const getAllRol = async () => {
+    const getRoles = await getAllRoles(token);
+    console.log(getRoles, "Holii");
+    let Rolles = getRoles.map((type) => {
       return {
-        label: type.ciudad,
+        label: type.role,
         value: type.id,
       };
     });
-    setCities(citiesTercero);
+    setRoles(Rolles);
   };
 
+  useEffect(() => {
+    getAllRol()
+  }, [])
+  
+
   let defaultValues = {
+    roleType:"",
     email:"",
     password:""
   }
 
   const { control, formState: { errors }, handleSubmit, reset, } = useForm({ defaultValues });
 
-  const sendTheData = async (data) => {
+  const [data, setData] = useState(null);
 
+  const sendTheData = async (data) => {
+    const response = await createUserService(data);
+    if ((response.status = 200)) {
+      alert("¡Usuario creado existosamente!");
+      setData(data);
+    } else {
+      alert("¡error, no se pudo crear el usuario!");
+    }
   };
    
   return (
@@ -42,7 +59,7 @@ const FormRegisterUser = () => {
       <center>
         <div className="column">
           <div className="container contenedor">
-            <h2>Registro de usuario.</h2>
+            <h2>Crear Usuario</h2>
             <Select
               name="roleType"
               control={control}
@@ -50,7 +67,7 @@ const FormRegisterUser = () => {
               label={"Role"}
               error={errors}
               placeHolder="Select The Role"
-              selectOptions={typeRegimen}
+              selectOptions={roles}
             />
             <br />
             <div className="col d-flex justify-content-around">

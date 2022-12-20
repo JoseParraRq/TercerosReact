@@ -29,7 +29,7 @@ router.post("/login",new UserController().loginController);
 
 // USERS
 
-router.post("/createUser",validateJwt,new UserController().createUser);
+router.post("/createUser",new UserController().createUser);
 
 router.get("/getAllUser",validateJwt,new UserController().getAllUsers);
 
