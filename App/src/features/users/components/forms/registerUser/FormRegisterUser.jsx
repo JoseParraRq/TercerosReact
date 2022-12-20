@@ -79,7 +79,6 @@ const FormRegisterUser = () => {
               <br />
               <div className="buttons d-flex justify-content-center m-2 ">
                 <Button type="submit" label="Registrar" className="p-button-success m-2" href="/"/>
-                <Button label="Cancelar" className="p-button-secondary m-2" /> 
               </div>
               <br />
               <br />
