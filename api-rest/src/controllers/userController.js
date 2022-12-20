@@ -21,7 +21,7 @@ class UserController{
         } catch (error) {
             console.log("here the error in the get all users",error);
         }
-        return res.json({users});//"successful request"
+        return res.json(users);//"successful request"
         
     }
 
@@ -104,6 +104,16 @@ try {
        
     }
 
+    async getAllRoles(req,res){
+        try {
+            var roles = await new UserLogic().getAllRolesLogic();
+            console.log("here the users in the controller",roles);
+        } catch (error) {
+            console.log("here the error in the get all users",error);
+        }
+        return res.json(roles);//"successful request"
+        
+    }
 }
 
 
