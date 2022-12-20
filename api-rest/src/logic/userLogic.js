@@ -3,9 +3,15 @@ const bd = require('./../db')
 class UserLogic {
 
   async createUserLogic(user) {
-    await bd('user').insert(user)
+   
+    let userSystem = {
+    email:user.email,
+    password:user.password,
+    id_role_type: user.roleType 
+}
+    let userInto = await bd('user_system').insert(userSystem)
       .then(function (result) {
-        console.log("successful", user);     // respond back to request
+        console.log("successful", userInto);     // respond back to request
       })
   }
 
