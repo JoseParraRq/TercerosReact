@@ -77,7 +77,7 @@ try {
 
     async loginController(req, res) {
         const response = await new UserLogic().getOneUserByEmailLogic(req.body);
-        const {message,token,email} = response; 
+        const {message,token,email,roleType} = response; 
         console.log(message); 
 
         switch (message) {
@@ -87,7 +87,7 @@ try {
             break;
 
             case "user Authenticated ":
-                return res.status(400).json({token,email})                
+                return res.status(200).json({token,email,roleType})                
             break;
 
             case "internal server error":
