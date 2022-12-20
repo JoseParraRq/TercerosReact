@@ -58,3 +58,12 @@ export async function getAllTerceros(token) {
     return await responseJson;
     
 }
+
+export async function getAllRoles(token) {
+
+    const urlGetAllRoles = 'http://localhost:3000/getAllTerceros';
+    const response = await fetch(urlGetAllRoles,{method:"GET",headers:{"x-token":token}});
+    const responseJson = await response.json();
+    return await responseJson;
+    
+}

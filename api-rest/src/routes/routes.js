@@ -33,4 +33,5 @@ router.post("/createUser",validateJwt,new UserController().createUser);
 
 router.get("/getAllUser",validateJwt,new UserController().getAllUsers);
 
+router.get("/getAllRoles",validateJwt, new UserController().getAllRoles)
 module.exports = router;

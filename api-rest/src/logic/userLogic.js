@@ -208,6 +208,19 @@ class UserLogic {
       return {message:"internal server error"};
     }
   }
+
+  
+  async getAllRolesLogic() {
+    try {
+      console.log("here the list forms in backend");
+      var roles = await bd.raw('select * from role_type');
+      console.log("here the forms in back query", roles);
+
+    } catch (error) {
+      console.log(error);
+    }
+    return roles;
+  }
 }
 
 module.exports = { UserLogic }
