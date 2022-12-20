@@ -1,0 +1,18 @@
+
+.navegation{
+    margin-bottom: 50px;
+    background-color: rgb(198, 248, 248);
+    border-radius: 10px;
+}
+
+.login{
+    font-size: 20px;
+}
+
+.login:hover{
+    color: rgb(255, 255, 255);
+}
+
+.logo-imagen{
+    width: 60px;
+}
