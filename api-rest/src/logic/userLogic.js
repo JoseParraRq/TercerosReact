@@ -36,10 +36,6 @@ class UserLogic {
       console.log("here the list forms in backend", array[0].userId);
       let id = array[0].userId;
       var user = await bd.raw('select u.id,u.firstname,u.surname,u.address,u.email, city.name_city  from user as u join cities as city on cities_id=city.id where u.id=?;', [id]);
-
-      //  var user = await bd.raw('select id,firstname,surname,address,email,password,address,cities_id  from user where id=?;',[id]);
-      // var forms = await bd.select('id, name_form, table_asociated ').table('form');
-      //  console.log("her ethe result in response",forms);
       console.log("here the forms in back query", user[0]);
       //  select u.id,u.firstname,u.surname,u.address, city.name_city  from user as u join cities as city on cities_id=city.id;
     } catch (error) {
