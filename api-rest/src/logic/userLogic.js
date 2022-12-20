@@ -19,15 +19,13 @@ class UserLogic {
     try {
 
       console.log("here the list forms in backend");
-      var users = await bd.raw('select u.id,u.firstname,u.surname,u.address, city.name_city  from user as u join cities as city on cities_id=city.id;');
-      // var forms = await bd.select('id, name_form, table_asociated ').table('form');
-      //  console.log("her ethe result in response",forms);
+      var users = await bd.raw('select email, role from user_system join role_type AS rT ON rT.id = user_system.id_role_type');
       console.log("here the forms in back query", users[0]);
 
     } catch (error) {
       console.log(error);
     }
-    return users[0];
+    return users;
   }
 
   async getUserById(userId) {

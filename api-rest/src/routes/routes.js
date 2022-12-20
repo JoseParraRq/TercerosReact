@@ -31,4 +31,6 @@ router.post("/login",new UserController().loginController);
 
 router.post("/createUser",validateJwt,new UserController().createUser);
 
+router.get("/getAllUser",validateJwt,new UserController().getAllUsers);
+
 module.exports = router;
