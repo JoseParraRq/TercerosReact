@@ -6,22 +6,12 @@ class UserController{
     async createUser(req,res){
         try {
             
-            let user={
-                "firstname":req.body.firstname,
-                "surname":req.body.surname,
-                "email":req.body.email,
-                "password":req.body.password,
-                "cities_id":req.body.cities_id,
-                "address":req.body.address
-            }
-            let userinto = await new UserLogic().createUserLogic(user);
+            let userinto = await new UserLogic().createUserLogic(req.body);
         } catch (error) {
             console.log(error);
         }
         return res.json({message:"successful request"})//"successful request"
-        // await bd.raw('insert into user (firstname,surname,email,password,cities_id) values($0,$1,$2,$3,$4);',[user.firstname,user.surname,user.email,user.password,user.cities_id]);
-        // knex('user').insert({email: user.email,})
-        //
+      
     }
 
     async getAllUsers(req,res){
@@ -32,9 +22,7 @@ class UserController{
             console.log("here the error in the get all users",error);
         }
         return res.json({users});//"successful request"
-        // await bd.raw('insert into user (firstname,surname,email,password,cities_id) values($0,$1,$2,$3,$4);',[user.firstname,user.surname,user.email,user.password,user.cities_id]);
-        // knex('user').insert({email: user.email,})
-        //
+        
     }
 
    async getUserById(req,res){
@@ -84,9 +72,7 @@ try {
             console.log("here the error in the get all users",error);
         }
         return res.json({users});//"successful request"
-        // await bd.raw('insert into user (firstname,surname,email,password,cities_id) values($0,$1,$2,$3,$4);',[user.firstname,user.surname,user.email,user.password,user.cities_id]);
-        // knex('user').insert({email: user.email,})
-        //
+        
     }
 
     async loginController(req, res) {
@@ -115,19 +101,7 @@ try {
         default:
             break;
        }
-        // try {
-        //     let user = await new UserLogic().getOneUserByEmailLogic(req.body);
-        //     console.log("here the user in controller",user);
-        //     if (user.user[0] === undefined || user.token==='') {
-        //       }
-        
-        //       if (user.user[0].password !== req.body.password) {
-        //         return res.status(400).json({message:"this password is incorrect",response:null})                
-        //     }
-        //     return res.status(200).json({response:user});
-        // } catch (error) {
-        //     console.log("here the error in loginController", error);
-        // }
+       
     }
 
 }
