@@ -34,11 +34,12 @@ export function InputPassword(props) {
 
 	return (
 		<div className="field">
-            <span className="p-float-label">
+            <span className="">
+            <label htmlFor="password"className={classNames({ 'p-error': errors.password })}>{label}</label>
+            <br />
                 <Controller name="password" control={control} rules={{ required: 'Password is required.' }} render={({ field, fieldState }) => (
                     <Password id={field.name} {...field} toggleMask className={classNames({ 'p-invalid': fieldState.invalid })} header={passwordHeader} footer={passwordFooter} />
                 )} />
-                <label htmlFor="password" className={classNames({ 'p-error': errors.password })}>Password*</label>
             </span>
             {getFormErrorMessage('password')}
         </div>

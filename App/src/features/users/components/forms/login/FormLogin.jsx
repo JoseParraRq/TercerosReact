@@ -30,12 +30,11 @@ const FormLogin = () => {
       alert(msg)
     }else{
       dispatch(signIn({email:response.email,token:response.token}));
-      //   let emailStorage = localStorage.setItem('email',response.response.user[0].email);
-      //   let get = localStorage.getItem('email')
-      //   console.log("here the local storage===>>>",get);
-      // }
-      //  
-       navigate("/listarTerceros")
+      if (response.roleType === 1) {
+        navigate("/adminPages")
+      }else{
+        navigate("/thirdsList")
+      }
     }
   };
    
@@ -48,12 +47,9 @@ const FormLogin = () => {
           <InputEmail  type="email"  name="email" label="Correo electronico" control={control} error={errors}/>
           <br />
           <br />
-          <InputPassword  name="pass" label="Contraseña" control={control} rules={{ required: "El campo de contraseña es requerido" }}  error={errors} style={{ label: "block", input: "p-invalid block", small: "p-error block", }}/>
+          <InputPassword block={true}  name="pass" label="Contraseña:" control={control} rules={{ required: "El campo de contraseña es requerido" }}  error={errors} style={{ label: "block", input: "p-invalid block", small: "p-error block", }}/>
           <form  onSubmit={handleSubmit(sendTheDataLogin)}>
             <br />
-            <div>
-              <p>Aun no te registras  <a href="/registroUsuario">REGISTRATE AQUI!</a></p>
-            </div>
           <div className="buttons d-flex justify-content-center m-2 ">
             <Button type="submit" label="Ingresar" className="p-button-success m-2" /> 
           </div>

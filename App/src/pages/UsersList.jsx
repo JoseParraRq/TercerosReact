@@ -6,7 +6,7 @@ import { ReactTabulator } from 'react-tabulator';
 import { getAllTerceros } from "../features/thirds/services/TercerosService";
 import { ThirdModal } from "../features/thirds/components";
 import { useSelector } from "react-redux";
-const ThirdsList = () => {
+const UsersList = () => {
 
   const [data, setData] = useState(null)  
   const {token} = useSelector(state=>state.user);
@@ -50,12 +50,25 @@ const ThirdsList = () => {
 
   console.log(data);
 
+  // boton
+
+  const [Users, setUsers] = useState(false)
+
+  const ShowTableUsers = () => {
+    setUsers(!Users)
+  }
+
   return (
     <div>
-        <ThirdModal />    
-        <ReactTabulator data={data} events={{rowClick: rowClick}} columns={columns} layout={"fitColumns"}/>
-    </div>
+      <button className="btn btn-danger" onClick={ShowTableUsers} >Thirds</button>
+       {Users &&
+        <>
+          <ThirdModal />    
+          <ReactTabulator data={data} events={{rowClick: rowClick}} columns={columns} layout={"fitColumns"}/>
+        </>
+       }
+      </div>
   );
 };
 
-export default ThirdsList;
+export default UsersList;

@@ -204,7 +204,8 @@ class UserLogic {
         return {
           message: "user Authenticated ",
           token,
-          email: userResult[0].email
+          email: userResult[0].email,
+          roleType:userResult[0].id_role_type
         };
       }
 
