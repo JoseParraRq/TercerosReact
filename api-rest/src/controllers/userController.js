@@ -21,7 +21,7 @@ class UserController{
         } catch (error) {
             console.log("here the error in the get all users",error);
         }
-        return res.json({users});//"successful request"
+        return res.json(users);//"successful request"
         
     }
 

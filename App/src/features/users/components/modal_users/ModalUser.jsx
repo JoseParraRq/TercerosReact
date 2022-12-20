@@ -14,7 +14,7 @@ const ModalUser = () => {
   return (
     <div>
       <Button
-        label="Login"
+        label="Crear Usuario"
         icon="pi pi-users"
         onClick={mostartModal}
       />

@@ -11,7 +11,7 @@ export async function loginUserService(data) {
     return await responseJson;
 }
 
-export async function getAllusers(token) {
+export async function getAllUsers(token) {
 
     const urlGetAllUsers = 'http://localhost:3000/getAllUser';
     const response = await fetch(urlGetAllUsers,{method:"GET",headers:{"x-token":token}});
