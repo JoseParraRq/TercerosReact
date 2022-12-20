@@ -1,15 +1,16 @@
 import React from 'react'
+//import ModalLogin from '../features/users/components/modal_users/ModalLogin'
 import { RegisterThird } from '../features/thirds/components'
 
-import {Card} from "primereact/card";
+
 
 export const Register = () => {
 
     return (
         <div>
-        
-        <RegisterThird/>
-            
+            <RegisterThird/>
         </div>
     )
 }
+
+

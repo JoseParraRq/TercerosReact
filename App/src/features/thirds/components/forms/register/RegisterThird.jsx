@@ -20,7 +20,7 @@ import { addThirds } from "../../../../../redux/thirds/thirdsSlice";
 export const RegisterThird = () => {
   const { newUsers } = useSelector((state) => state.third);
   console.log(newUsers);
-
+ 
   const dispatch = useDispatch();
 
   const [data, setData] = useState(null);
