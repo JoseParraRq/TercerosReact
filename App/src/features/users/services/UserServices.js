@@ -10,3 +10,12 @@ export async function loginUserService(data) {
     const responseJson = await response.json();
     return await responseJson;
 }
+
+export async function getAllusers(token) {
+
+    const urlGetAllUsers = 'http://localhost:3000/getAllUser';
+    const response = await fetch(urlGetAllUsers,{method:"GET",headers:{"x-token":token}});
+    const responseJson = await response.json();
+    return await responseJson;
+    
+}
