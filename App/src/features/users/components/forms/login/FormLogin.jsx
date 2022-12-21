@@ -21,9 +21,8 @@ const FormLogin = () => {
   }
 
   const { control, formState: { errors }, watch, handleSubmit, reset, } = useForm({ defaultValues });
-  console.log(watch())
-  const isEmpty = Object.values(watch()).some(x => (x === ''))
-  console.log(isEmpty)
+
+
 
   const sendTheDataLogin = async (data) => {
     const response = await loginUserService(data);

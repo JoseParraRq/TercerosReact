@@ -10,7 +10,8 @@ const ThirdsList = () => {
 
   const [data, setData] = useState(null)  
   const {token} = useSelector(state=>state.user);
-  
+  const [thirdEdit, setThirdEdit] = useState(false)  
+  const [rowData, setRowData] = useState(null)  
   const getAllTercerosService= async()=>{
     const dat = await getAllTerceros(token);
     setData(dat)
@@ -22,8 +23,10 @@ const ThirdsList = () => {
 
 
   const rowClick = (e, row) => {
-
-    console.log(row.getData())
+const selectRow = row.getData();
+    setRowData(selectRow);
+    setThirdEdit(true)
+  
     // console.log('ref table: ', ref.current); // this is the Tabulator table instance
     // // ref?.current && ref?.current.replaceData([])
     // console.log('rowClick id: ${row.getData().id}', row, e);
@@ -54,6 +57,7 @@ const ThirdsList = () => {
     <div>
         <ThirdModal />    
         <ReactTabulator data={data} events={{rowClick: rowClick}} columns={columns} layout={"fitColumns"}/>
+        {thirdEdit && <ThirdModal  third={rowData} /> }
     </div>
   );
 };
