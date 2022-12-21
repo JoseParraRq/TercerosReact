@@ -3,7 +3,8 @@ import { RegisterThird } from "../forms/register/RegisterThird";
 import { Dialog } from "primereact/dialog";
 import { Button } from "primereact/button";
 
-export const ThirdModal = () => {
+export const ThirdModal = (props ) => {
+  const {third} = props;
   const [showModal, setShowModal] = useState(false);
 
   const mostartModal = () => {
@@ -19,7 +20,7 @@ export const ThirdModal = () => {
       />
 
       <Dialog onHide={() => { setShowModal(false) }} modal visible={showModal}>
-        <RegisterThird />
+        <RegisterThird third={third} />
       </Dialog>
     </div>
   );
