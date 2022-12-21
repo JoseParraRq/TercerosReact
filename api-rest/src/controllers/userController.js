@@ -42,7 +42,7 @@ class UserController{
         } catch (error) {
             console.log("here the error in the get all forms",error);
         }
-        return res.json({userUpdate});
+        return res.json(userUpdate);
     }
   
     async userLogin(req,res){

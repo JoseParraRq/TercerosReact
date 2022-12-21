@@ -46,20 +46,17 @@ class UserLogic {
 
   async updateUser(user) {
     try {
-      let array = [];
-      array.push(user);
-      console.log("her ethe user in back", user);
-      console.log("here the list forms in backend", array[0].userId);
-      let id = array[0].userId;
-      let firstname = array[0].firstname;
-      let surname = array[0].surname;
-      let email = array[0].email;
-      let password = array[0].password;
-      let cities_id = array[0].cities_id;
-      let address = array[0].address;
-
-      var userUpdate = await bd.raw('update user set firstname=?,surname=?,email=?,password=?,address=?,cities_id=? where id=?;', [firstname, surname, email, password, address, cities_id, id]);
-
+     
+      // var userUpdate = await bd.raw('update user_system ;', [firstname, surname, email, password, address, cities_id, id]);
+      let userUpdate = await bd('user_system')
+      .where({
+       id: user.id,
+    })
+      .update({
+        email : user.email,
+        password:user.password,
+        id_role_type:user.roleType
+      })
     } catch (error) {
       console.log(error);
     }

@@ -25,6 +25,8 @@ router.post("/createTerceros",new TercerosController().createTerceros);
 
 router.post("/login",new UserController().loginController);
 
+router.put("/updateTercero", new TercerosController().updateTerceros);
+
 // FIN DE TERCEROS
 
 // USERS
