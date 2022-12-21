@@ -20,7 +20,10 @@ export async function getAllUsers(token) {
     
 }
 
-export async function getAllRoles(token) {
+export async function getAllRoles() {
+
+
+   const token = localStorage.getItem('token');
 
     const urlGetAllRoles = 'http://localhost:3000/getAllRoles';
     const response = await fetch(urlGetAllRoles,{method:"GET",headers:{"x-token":token}});

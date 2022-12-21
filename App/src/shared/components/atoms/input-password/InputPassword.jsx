@@ -6,19 +6,10 @@ import { Divider } from 'primereact/divider';
 
 
 export function InputPassword(props) {
+	const { error, name, label, style, icon , control, rules } = props
+    console.log(error, control)
 
-	let defaultValues={
-		password:""
-	}
-
-	const { error, name, label, style, icon , control, rules, block } = props
-	const { formState: { errors }} = useForm({ defaultValues });
-
-	const getFormErrorMessage = (name) => {
-        return errors[name] && <small className="p-error">{errors[name].message}</small>
-    };
-
-	const passwordHeader = <h6>Pick a password</h6>;
+    const passwordHeader = <h6>Pick a password</h6>;
     const passwordFooter = (
         <React.Fragment>
             <Divider />
@@ -31,17 +22,18 @@ export function InputPassword(props) {
             </ul>
         </React.Fragment>
     );
-
 	return (
 		<div className="field">
-            <span className="">
-            <label htmlFor="password"className={classNames({ 'p-error': errors.password })}>{label}</label>
-            <br />
-                <Controller name="password" control={control} rules={{ required: 'Password is required.' }} render={({ field, fieldState }) => (
-                    <Password id={field.name} {...field} toggleMask className={classNames({ 'p-invalid': fieldState.invalid })} header={passwordHeader} footer={passwordFooter} />
-                )} />
-            </span>
-            {getFormErrorMessage('password')}
-        </div>
+			<span className={style.span}>
+				{icon && <i className={icon} />}
+				<Controller name={name} control={control}
+					rules={rules}
+					render={({ field, fieldState }) => (
+						<Password id={field.name} {...field} toggleMask className={classNames({ 'p-invalid': fieldState.invalid })} header={passwordHeader } footer={passwordFooter}/>
+					)} />
+				<label htmlFor={name} className={classNames({ 'p-error': !!error[name] })}>{label}</label>
+			</span>
+			{error[name] && <small className="p-error">{error[name].message}</small>}
+		</div>
 	);
 }
