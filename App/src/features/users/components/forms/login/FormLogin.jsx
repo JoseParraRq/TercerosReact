@@ -5,6 +5,7 @@ import { InputPassword } from "../../../../../shared/components/atoms/input-pass
 import { InputEmail } from "../../../../../shared/components/atoms/input-email/InputEmail";
 import { loginUserService } from '../../../services/UserServices';
 import { useNavigate } from "react-router-dom";
+import "./style.css";
 
 const FormLogin = () => {
 
@@ -38,7 +39,7 @@ const FormLogin = () => {
   };
    
     return (
-    <div className='container-fluid'>
+    <div className='container-fluid login-form'>
       <center>
       <div className="column">
       <div className="container card">

@@ -43,3 +43,10 @@ input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
+
+.login{
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    padding: 200px;
+}
