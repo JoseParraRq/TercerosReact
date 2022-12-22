@@ -84,28 +84,28 @@ class TercerosLogic {
       console.log("here the tercerrooos", terceros);
 
       var users = await bd
-      .insert(
-        [
-          {
-            primer_nombre:`${terceros.firstName}`, 
-            segundo_nombre:`${terceros.lastName}`,
-            primer_apellido:`${terceros.surName}`,
-            segundo_apellido:`${terceros.secondSurName}`,
-            id_tipo_tercero:`${terceros.typeTerceroId}`,
-            id_regimen_tributario:`${terceros.regimeTypeId}`,
-            id_tipo_documento:`${terceros.documentTypeId}`,
-            documento:`${terceros.document}`,
-            id_ciudad:`${terceros.cityId}`,
-            direccion:`${terceros.address}`,
-            email:`${terceros.email}`,
-            celular:`${terceros.cellPhone}`,
-            telefono:`${terceros.phone}`,
-            id_departamento:`${terceros.department}`
-          }
-        ]
+        .insert(
+          [
+            {
+              primer_nombre: `${terceros.firstName}`,
+              segundo_nombre: `${terceros.lastName}`,
+              primer_apellido: `${terceros.surName}`,
+              segundo_apellido: `${terceros.secondSurName}`,
+              id_tipo_tercero: `${terceros.typeTerceroId}`,
+              id_regimen_tributario: `${terceros.regimeTypeId}`,
+              id_tipo_documento: `${terceros.documentTypeId}`,
+              documento: `${terceros.document}`,
+              id_ciudad: `${terceros.cityId}`,
+              direccion: `${terceros.address}`,
+              email: `${terceros.email}`,
+              celular: `${terceros.cellPhone}`,
+              telefono: `${terceros.phone}`,
+              id_departamento: `${terceros.department}`
+            }
+          ]
         ).into('Gen_Terceros')
-       
-          
+
+
     } catch (error) {
       console.log(error);
     }
@@ -133,7 +133,7 @@ class TercerosLogic {
     return users[0];
   }
 
- 
+
 
   async getOneTercerosLogic(tercero) {
     try {
@@ -149,57 +149,54 @@ class TercerosLogic {
       gen_departamentos AS d ON d.id = Gen_Terceros.id_departamento INNER JOIN
       gen_ciudades AS c ON c.id = Gen_Terceros.id_ciudad
       where idtercero=?;`, [tercero.terceroId]);
-      console.log("here the result",tercero);
+      console.log("here the result", tercero);
     } catch (error) {
       console.log(error);
     }
     return tercero;
   }
 
-  
+
 
   async updateTerceros(terceros) {
     try {
-      console.log("here the tercerrooos", terceros);
-      let municipio = new Number(terceros)
-      const array = [
-        terceros.id,//0
-        terceros.id_municipio,//1
-        terceros.id_actividad_ciiu,//2
-        terceros.id_tipo_regimen,//3
-        terceros.id_tipo_documento,//4
-        terceros.id_lista_precio,//5
-        terceros.id_tipo_tercero,//6
-        terceros.id_tipo_forma_pago,//7
-        terceros.documento,//8
-        terceros.digito,//9
-        terceros.nombre_tercero,//10
-        terceros.primer_nombre,//11
-        terceros.segundo_nombre,//12
-        terceros.primer_apellido,//13
-        terceros.segundo_apellido,//14
-        terceros.direccion,//15
-        terceros.telefono,//16
-        terceros.celular,//17
-        terceros.email,//18
-        terceros.cupo_credito,//19
-        terceros.plazo,//20
-        terceros.estado,//21
-        terceros.id_cuenta_retencion,//22
-        terceros.retencion_porcentaje,//23
-        terceros.base_retencion,//24
-        terceros.id_cuenta_reteica,//25
-        terceros.reteica_porcentaje,//26
-        'editar'//26
 
-      ];
-      console.log("here the array from terceros", array);
-      var users = await bd.raw(`call Sp_con_terceros(${array.map((e) => { return "?"; })})`, array);
+        let tercerosUpdate = await bd
+          .select('idtercero')
+          .from('Gen_Terceros')
+          .where('idtercero', terceros.idtercero)
+          .then(([row]) => {
+            if (!row) {
+              console.log("select id do not exist")
+              return res.send("do not exist")
+            }
+            return bd('Gen_Terceros')
 
+              .update(
+                
+                { 'primer_nombre': terceros.firstName,
+                  'segundo_nombre': terceros.lastName,
+                  'primer_apellido': terceros.surName,
+                  'segundo_apellido': terceros.secondSurName,
+                  'id_tipo_tercero': terceros.typeTerceroId,
+                  'id_regimen_tributario': terceros.regimeTypeId,
+                  'id_tipo_documento': terceros.documentTypeId,
+                  'documento': terceros.document,
+                  'id_ciudad': terceros.cityId,
+                  'direccion': terceros.address,
+                  'email': terceros.email,
+                  'celular': terceros.cellPhone,
+                  'telefono': terceros.phone,
+                  'id_departamento': terceros.department
+                }
+              )
+              .where('idtercero', row.idtercero)
+          });
+
+      return tercerosUpdate;
     } catch (error) {
       console.log(error);
     }
-    return users[0];
   }
 
   async deleteTerceros(tercero) {
@@ -215,12 +212,12 @@ class TercerosLogic {
     return users[0];
   }
 
-  async loginLogic(request){
+  async loginLogic(request) {
     try {
-      console.log("here the req in login logic",request);
+      console.log("here the req in login logic", request);
       let findOneTerceroForLogin = await this.getOneTerceroByEmailLogic(request)
     } catch (error) {
-      
+
     }
   }
 

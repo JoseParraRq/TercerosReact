@@ -6,22 +6,12 @@ class UserController{
     async createUser(req,res){
         try {
             
-            let user={
-                "firstname":req.body.firstname,
-                "surname":req.body.surname,
-                "email":req.body.email,
-                "password":req.body.password,
-                "cities_id":req.body.cities_id,
-                "address":req.body.address
-            }
-            let userinto = await new UserLogic().createUserLogic(user);
+            let userinto = await new UserLogic().createUserLogic(req.body);
         } catch (error) {
             console.log(error);
         }
         return res.json({message:"successful request"})//"successful request"
-        // await bd.raw('insert into user (firstname,surname,email,password,cities_id) values($0,$1,$2,$3,$4);',[user.firstname,user.surname,user.email,user.password,user.cities_id]);
-        // knex('user').insert({email: user.email,})
-        //
+      
     }
 
     async getAllUsers(req,res){
@@ -31,10 +21,8 @@ class UserController{
         } catch (error) {
             console.log("here the error in the get all users",error);
         }
-        return res.json({users});//"successful request"
-        // await bd.raw('insert into user (firstname,surname,email,password,cities_id) values($0,$1,$2,$3,$4);',[user.firstname,user.surname,user.email,user.password,user.cities_id]);
-        // knex('user').insert({email: user.email,})
-        //
+        return res.json(users);//"successful request"
+        
     }
 
    async getUserById(req,res){
@@ -54,7 +42,7 @@ class UserController{
         } catch (error) {
             console.log("here the error in the get all forms",error);
         }
-        return res.json({userUpdate});
+        return res.json(userUpdate);
     }
   
     async userLogin(req,res){
@@ -84,28 +72,48 @@ try {
             console.log("here the error in the get all users",error);
         }
         return res.json({users});//"successful request"
-        // await bd.raw('insert into user (firstname,surname,email,password,cities_id) values($0,$1,$2,$3,$4);',[user.firstname,user.surname,user.email,user.password,user.cities_id]);
-        // knex('user').insert({email: user.email,})
-        //
+        
     }
 
     async loginController(req, res) {
-        try {
-            let user = await new UserLogic().getOneUserByEmailLogic(req.body);
-            console.log("here the user in controller",user);
-            if (user.user[0] === undefined || user.token==='') {
-                return res.status(400).json({message:"this Email dont exist in our System do you want to register",response:null})                
-              }
-        
-              if (user.user[0].password !== req.body.password) {
-                return res.status(400).json({message:"this password is incorrect",response:null})                
-            }
-            return res.status(200).json({response:user});
-        } catch (error) {
-            console.log("here the error in loginController", error);
-        }
+        const response = await new UserLogic().getOneUserByEmailLogic(req.body);
+        const {message,token,email,roleType} = response; 
+        console.log(message); 
+
+        switch (message) {
+            case "user not found":
+            return res.status(400).json({message})                
+            
+            break;
+
+            case "user Authenticated ":
+                return res.status(200).json({token,email,roleType})                
+            break;
+
+            case "internal server error":
+                return res.status(500).json({message})                
+            break;
+
+            case "invalid password":
+                return res.status(400).json({message})                
+            break;
+       
+        default:
+            break;
+       }
+       
     }
 
+    async getAllRoles(req,res){
+        try {
+            var roles = await new UserLogic().getAllRolesLogic();
+            console.log("here the users in the controller",roles);
+        } catch (error) {
+            console.log("here the error in the get all users",error);
+        }
+        return res.json(roles);//"successful request"
+        
+    }
 }
 
 

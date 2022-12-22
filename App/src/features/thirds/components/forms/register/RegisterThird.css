@@ -16,7 +16,9 @@
 }
 .main_card {
     width: 100%;
-    display: flex;  
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .buttons {
@@ -34,6 +36,7 @@
 
 .carta{
     width: 50rem;
+    
 }
 
 .carta div{

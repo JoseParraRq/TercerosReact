@@ -4,22 +4,17 @@ import 'react-tabulator/lib/styles.css'; // required styles
 import 'react-tabulator/lib/css/tabulator.min.css'; // theme
 import { ReactTabulator } from 'react-tabulator';
 import { ThirdModal } from "../features/thirds/components";
-import { useDispatch, useSelector } from 'react-redux';
-import { getAllTerceros } from "../features/thirds/services/TercerosService";
-
+import { useSelector } from "react-redux";
 const ThirdsList = () => {
 
-  const dispatch = useDispatch();
-  const [data, setData] = useState(null);
-  const { thirds } = useSelector(state=>state.third);
-
-  // const getAllTercerosService= async()=>{
-  //   const dat = await getAllTerceros();
-  //   setData(dat)
-  // }
-
-
-
+  const [data, setData] = useState(null)
+  const { token } = useSelector(state => state.user);
+  const [thirdEdit, setThirdEdit] = useState(false)
+  const [rowData, setRowData] = useState(null)
+  const getAllTercerosService = async () => {
+    const dat = await getAllTerceros(token);
+    setData(dat)
+  }
 
   useEffect(() => {
     // getAllTercerosService()
@@ -29,8 +24,10 @@ const ThirdsList = () => {
 
 
   const rowClick = (e, row) => {
+    const selectRow = row.getData();
+    setRowData(selectRow);
+    setThirdEdit(true)
 
-    console.log(row.getData())
     // console.log('ref table: ', ref.current); // this is the Tabulator table instance
     // // ref?.current && ref?.current.replaceData([])
     // console.log('rowClick id: ${row.getData().id}', row, e);
@@ -56,23 +53,12 @@ const ThirdsList = () => {
   ];
 
   console.log(data);
-  let get =localStorage.getItem('email')
-  console.log(get);
+
   return (
     <div>
-     <div>
-      <h4 style={{"textAlign":"end"}}>{"Usuario: "+get}</h4>
-     </div>
       <ThirdModal />
-      <br />
-      <ReactTabulator
-      data={thirds }
-      events={{
-        rowClick: rowClick
-      }}
-      columns={columns}
-      layout={"fitColumns"}
-      />
+      <ReactTabulator data={data} events={{ rowClick: rowClick }} columns={columns} layout={"fitColumns"} />
+      {thirdEdit && <ThirdModal third={rowData} />}
     </div>
   );
 };

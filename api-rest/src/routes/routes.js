@@ -4,10 +4,13 @@ const {FormBuilderController} = require('./../controllers/formBuilderController'
 const service = require('../models/user');
 const { ProductController } = require('../controllers/productController');
 const { TercerosController } = require('../controllers/tercerosController');
+const { validateJwt } = require('../middlewares/validateWebToken');
+
 const router=Router();
 
-// angular desarrollo==============>>>>>>>>
+// TERCEROS
 router.get("/getTipoTerceros",new TercerosController().getTipoTerceros);
+
 router.get("/getTipoDocumento",new TercerosController().getTipoDocumento);
 
 router.get("/getTipoRegimen",new TercerosController().getTipoRegimen);//http://localhost:3000/getTipoRegimen
@@ -16,11 +19,21 @@ router.get("/getMunicipios",new TercerosController().getMunicipios);
 
 router.get("/getDepartamentos",new TercerosController().getDepartamentos);
 
-router.get("/getAllTerceros",new TercerosController().getAllTerceros);
+router.get("/getAllTerceros", validateJwt,new TercerosController().getAllTerceros);
+
 router.post("/createTerceros",new TercerosController().createTerceros);
 
 router.post("/login",new UserController().loginController);
 
+router.put("/updateTercero", new TercerosController().updateTerceros);
 
+// FIN DE TERCEROS
 
+// USERS
+
+router.post("/createUser",new UserController().createUser);
+
+router.get("/getAllUser",validateJwt,new UserController().getAllUsers);
+
+router.get("/getAllRoles",validateJwt, new UserController().getAllRoles)
 module.exports = router;

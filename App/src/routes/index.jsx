@@ -1,20 +1,22 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom';
-import PruebaComponente from '../shared/components/pages/PruebaComponente.jsx';
 import { Login } from '../pages/Login.jsx';
-import { Register } from '../pages/Register.jsx';
-//import { FormLogin } from '../pages/Login.jsx';
-// import { FormTest } from '../shared/components/index.js';
 import ThirdsList from '../pages/ThirdsList.jsx';
+import { RegisterUser } from '../pages/RegisterUser';
+import { Home } from '../pages/Home.jsx';
+import { AdminPages } from '../pages/AdminPages.jsx';
+import UsersList from '../pages/UsersList.jsx';
 
 
 function RoutesApp(props) {
   return (
     <Routes>
-      <Route path='/' element={<Login/>}/>
-      <Route path='/registro' element={<Register/>}/>
-      <Route path='/pruebaComponente' element={<PruebaComponente/>}/>
-      <Route path='/listarTerceros' element={<ThirdsList/>}/>
+      <Route path='/' element={<Home/>}/>
+      <Route path='/login' element={<Login/>}/>
+      <Route path='/register' element={<RegisterUser/>}/>
+      <Route path='/thirdsList' element={<ThirdsList/>}/>
+      <Route path='/userList' element={<UsersList/>}/>
+      <Route path='/adminPages' element={<AdminPages/>}/>
     </Routes>
   )
 }

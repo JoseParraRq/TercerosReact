@@ -17,12 +17,13 @@ import "./RegisterThird.css";
 import { addThirds } from "../../../../../redux/thirds/thirdsSlice";
 
 
-export const RegisterThird = () => {
+export const RegisterThird = (props) => {
+
+  const { third } = props;
   const { newUsers } = useSelector((state) => state.third);
-  console.log(newUsers);
-
+  const [dataUpdate, setDataUpdate] = useState(null);
   const dispatch = useDispatch();
-
+  
   const [data, setData] = useState(null);
   const [userTypes, setUserTypes] = useState(null);
   const [typeRegimen, setTypeRegimen] = useState(null);
@@ -44,7 +45,7 @@ export const RegisterThird = () => {
     }
   };
 
-  let defaultValues = {
+  const defaultValues =  third  ?  third  : {
     typeTerceroId: "",
     documentTypeId: "",
     regimeTypeId: "",
@@ -60,7 +61,13 @@ export const RegisterThird = () => {
     phone: "",
     cellPhone: "",
   };
+  
+  console.log(defaultValues)
 
+  const updateThird =()=>{
+
+  }
+  
   const getTypes = async () => {
     const types = await getAllTipoTercerosService(); //llamo a el servicio de obtener todos los tipos de usuarios y seteo userTypes para mostrarlos en el select
     console.log("here the TypesTerceros in form", types);
@@ -135,13 +142,14 @@ export const RegisterThird = () => {
     formState: { errors },
     handleSubmit,
     reset,
-  } = useForm({ defaultValues });
+  } = useForm({ });
 
   return (
     <div className="container contenedor">
 
       <center>
-        <h1>Registro de terceros</h1>
+        {third ? <h1>Editar tercero </h1> : <h1>Registro de terceros</h1>}
+    
 
         {/* Primera card */}
 
@@ -184,7 +192,10 @@ export const RegisterThird = () => {
               className=""
               block={true}
               name="document"
+      
               label="Documento"
+              value={defaultValues.documento}
+              onChage={(e)=>{ setDataUpdate(e.value)}}
               control={control}
               error={errors}
               rules={{ required: "Documento requerido." }}
